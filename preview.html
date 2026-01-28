@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200, height=630">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            width: 1200px;
+            height: 630px;
+            font-family: 'Heebo', sans-serif;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glow-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+        }
+        .glow-1 {
+            width: 400px;
+            height: 400px;
+            background: #00f3ff;
+            top: -100px;
+            right: -100px;
+        }
+        .glow-2 {
+            width: 300px;
+            height: 300px;
+            background: #b400ff;
+            bottom: -50px;
+            left: -50px;
+        }
+        .glow-3 {
+            width: 200px;
+            height: 200px;
+            background: #ff00ea;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .logo {
+            width: 150px;
+            height: 150px;
+            border-radius: 30px;
+            box-shadow: 0 0 50px rgba(0, 243, 255, 0.6);
+            border: 3px solid rgba(0, 243, 255, 0.5);
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 72px;
+            font-weight: 900;
+            background: linear-gradient(90deg, #00f3ff, #b400ff, #ff00ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 0 0 40px rgba(0, 243, 255, 0.5);
+        }
+
+        .subtitle {
+            font-size: 32px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+        }
+
+        .tags {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .tag {
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: 600;
+            border: 2px solid;
+        }
+        .tag-1 { background: rgba(255, 100, 200, 0.2); border-color: #ff64c8; color: #ff64c8; }
+        .tag-2 { background: rgba(100, 200, 255, 0.2); border-color: #64c8ff; color: #64c8ff; }
+        .tag-3 { background: rgba(0, 255, 136, 0.2); border-color: #00ff88; color: #00ff88; }
+        .tag-4 { background: rgba(255, 200, 100, 0.2); border-color: #ffc864; color: #ffc864; }
+    </style>
+</head>
+<body>
+    <div class="glow-circle glow-1"></div>
+    <div class="glow-circle glow-2"></div>
+    <div class="glow-circle glow-3"></div>
+
+    <div class="content">
+        <img src="logo.jpeg" alt="Logo" class="logo">
+        <h1>Gaming & Learning</h1>
+        <p class="subtitle">מנוע חיפוש משחקים לפי כשירויות</p>
+        <div class="tags">
+            <span class="tag tag-1">כשירויות</span>
+            <span class="tag tag-2">מיומנויות</span>
+            <span class="tag tag-3">תחומי ידע</span>
+            <span class="tag tag-4">ערכים</span>
+        </div>
+    </div>
+</body>
+</html>
