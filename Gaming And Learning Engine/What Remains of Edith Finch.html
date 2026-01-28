@@ -1,0 +1,233 @@
+<html><head><base href="https://websim.creation.engine/edithfinch/" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Remains of Edith Finch: משחק הרפתקה נרטיבי - גיימינג חינוכי</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap');
+
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', sans-serif;
+        line-height: 1.6;
+        color: #333;
+        direction: rtl;
+        background: #f0f4f8;
+        overflow-x: hidden;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    header {
+        text-align: center;
+        padding: 60px 0;
+        background: linear-gradient(45deg, #2c3e50, #34495e);
+        color: #ecf0f1;
+        position: relative;
+        overflow: hidden;
+    }
+    header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('edith-finch-header-bg.jpg') no-repeat center center;
+        background-size: cover;
+        opacity: 0.3;
+        z-index: 0;
+    }
+    h1 {
+        margin: 0;
+        font-size: 3em;
+        font-family: 'Playfair Display', serif;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        position: relative;
+        z-index: 1;
+    }
+    section {
+        margin-bottom: 30px;
+        padding: 25px;
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+    h2 {
+        color: #2c3e50;
+        font-family: 'Playfair Display', serif;
+        border-bottom: 2px solid #34495e;
+        padding-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .game-image {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 20px auto;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    .links a {
+        display: inline-block;
+        margin: 10px;
+        padding: 12px 24px;
+        background: linear-gradient(45deg, #2c3e50, #34495e);
+        color: #ecf0f1;
+        text-decoration: none;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .links a:hover {
+        background: linear-gradient(45deg, #34495e, #2c3e50);
+        transform: translateY(-3px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        padding-top: 30px;
+        height: 0;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 15px;
+    }
+    .home-button {
+        display: block;
+        width: 200px;
+        margin: 40px auto;
+        padding: 15px;
+        background: linear-gradient(45deg, #2c3e50, #34495e);
+        color: #ecf0f1;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        overflow: hidden;
+    }
+    .home-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+    .home-button::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: rgba(255,255,255,0.2);
+        transform: rotate(45deg);
+        transition: all 0.3s ease;
+    }
+    .home-button:hover::after {
+        left: 100%;
+    }
+    ul, ol {
+        padding-right: 20px;
+    }
+    li {
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <h1>What Remains of Edith Finch</h1>
+    </header>
+    <div class="container">
+        <section>
+            <h2>על המשחק</h2>
+            <p>What Remains of Edith Finch הוא משחק הרפתקה נרטיבי מרגש ומעמיק, המספר את סיפורה של משפחת פינץ' המקוללת, בעזרת גרפיקה ומכניקה מעניינות ומגוונות. השחקן מגלם את הנערה אדית פינץ', האחרונה בשושלת המשפחה, החוזרת לבית ילדותה כדי לחקור את ההיסטוריה המסתורית של משפחתה. דרך סדרה של סיפורים קצרים, כל סיפור הור משחק בפני עצמו, השחקנים חווים את חייהם ומותם של בני משפחת פינץ' לאורך הדורות, כל אחד עם סיפור ייחודי ומרתק משלו. <br> חברת Ithrive Games פיתחה תוכנית לימודים מפורטת סביב המשחק הזה, על נושא הזהות וקראה לשיעורים: Museum Of Me, קריאה וכתיבה באנגלית על המקום שלי, מי אני, מה מגדיר אותי, המשפחה שלי ועוד.</p>
+            <img src="https://static.wixstatic.com/media/caf596_fc33dabfb7a640b4a7272606d552296b~mv2.jpeg" alt="תמונת משחק של What Remains of Edith Finch המציגה את בית משפחת פינץ'" class="game-image" width="800" height="450">
+        </section>
+
+        <section class="links">
+            <h2>קישורים למשחק</h2>
+            <a href="https://annapurna.pictures/interactive/what-remains-of-edith-finch">אתר רשמי</a>
+            <a href="https://store.steampowered.com/app/501300/What_Remains_of_Edith_Finch/">Steam</a>
+        </section>
+
+        <section>
+            <h2>מה לומדים כאן?</h2>
+            <ul>
+                <li><strong>ספרות וכתיבה יצירתית:</strong> חקירת טכניקות נרטיביות מתקדמות וסיפור סיפורים אינטראקטיבי.</li>
+                <li><strong>פסיכולוגיה:</strong> הבנת התמודדות עם אובדן, טראומה ומערכות יחסים משפחתיות מורכבות.</li>
+                <li><strong>היסטוריה משפחתית:</strong> חקירת השפעת העבר על ההווה ועל זהות אישית.</li>
+                <li><strong>אמנות ועיצוב:</strong> הערכת הסגנון האמנותי הייחודי והאווירה המיוחדת של המשחק.</li>
+                <li><strong>פילוסופיה:</strong> דיון במושגים של גורל, בחירה חופשית ומשמעות החיים.</li>
+                <li><strong>סימבוליזם:</strong> פענוח והבנת הסמלים והמטאפורות העשירים במשחק.</li>
+                <li><strong>אתיקה:</strong> בחינת דילמות מוסריות ואתיות העולות מסיפורי המשפחה.</li>
+                <li><strong>מיתולוגיה:</strong> זיהוי אלמנטים של מיתוסים ואגדות בסיפור המשפחתי.</li>
+                <li><strong>אינטראקטיביות בתקשורת:</strong> הבנה כיצד אינטראקטיביות משפיעה על חווית הסיפור.</li>
+                <li><strong>SEL:</strong> פיתוח אמפתיה ויכולת להבין נקודות מבט שונות.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>תוכנית לימודים</h2>
+            <p>שילוב What Remains of Edith Finch בכיתה יכול להעשיר את הלמידה במגוון תחומים:</p>
+            <ol>
+                <li><strong>ספרות:</strong> ניתוח מבנה נרטיבי, דמויות, ותמות מרכזיות בסיפור.</li>
+                <li><strong>אמנות:</strong> חקירת הסגנון האמנותי הייחודי והשימוש בצבע ואור במשחק.</li>
+                <li><strong>היסטוריה:</strong> דיון על השפעת אירועים היסטוריים על משפחות ועל זהות אישית.</li>
+                <li><strong>פסיכולוגיה:</strong> ניתוח התנהגויות ומערכות יחסים משפחתיות.</li>
+                <li><strong>פילוסופיה:</strong> דיון בשאלות של גורל, בחירה חופשית ומשמעות החיים.</li>
+                <li><strong>מדעי המחשב:</strong> בחינת טכניקות של עיצוב משחקים ונרטיב אינטראקטיבי.</li>
+                <li><strong>סוציולוגיה:</strong> חקירת דינמיקות משפחתיות ומורשת בין-דורית.</li>
+                <li><strong>אנגלית:</strong> ניתוח טקסטים, דיאלוגים וטכניקות כתיבה יצירתית.</li>
+                <li><strong>תיאטרון:</strong> בחינת אלמנטים של ביצוע ומשחק בסצנות השונות.</li>
+                <li><strong>אתיקה:</strong> דיון בדילמות מוסריות העולות מסיפורי המשפחה.</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>סרטון הדגמה של המשחק</h2>
+            <div class="video-container">
+                <iframe width="656" height="369" src="https://www.youtube.com/embed/q-fj8PhdWeI" title="What Remains Of Edith Finch - Full Game Walkthrough Gameplay &amp; Ending (No Commentary Longplay)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <section>
+            <h2>קישורים נוספים</h2>
+            <ul>
+                <li><a href="https://ithrivegames.org/ithrive-curriculum/">תוכנית לימודים סביב המשחק</a></li>
+            </ul>
+        </section>
+
+        <a href="https://neufeldim.wixsite.com/edugamingengine" class="home-button">חזרה לדף הבית</a>
+    </div>
+
+    <script>
+        document.querySelectorAll('a').forEach(link => {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://th.bing.com/th/id/OIG3.8rmEMC9A_ysIRoa2H5Db?w=1024&h=1024&rs=1&pid=ImgDetMain" />
+    <title>Gaming & Learning Engine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-purple: #b400ff;
+            --neon-pink: #ff00ea;
+            --neon-green: #00ff88;
+            --neon-orange: #ff6b00;
+            --neon-yellow: #ffea00;
+            --dark-bg: #0a0a1a;
+            --card-bg: rgba(20, 20, 40, 0.9);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: var(--dark-bg);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #fff;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%);
+            overflow: hidden;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(0, 243, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(180, 0, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 0, 234, 0.05) 0%, transparent 40%);
+            animation: bgMove 20s ease-in-out infinite;
+        }
+
+        @keyframes bgMove {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(2%, 2%) rotate(1deg); }
+            66% { transform: translate(-1%, 1%) rotate(-1deg); }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+            animation: float 15s infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Header */
+        header {
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(180deg, rgba(0, 243, 255, 0.1) 0%, transparent 100%);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 10px;
+        }
+
+        .logo-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(0, 243, 255, 0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 0 50px rgba(0, 243, 255, 0.8); }
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 6vw, 4rem);
+            font-weight: 900;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple), var(--neon-pink), var(--neon-blue));
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientMove 5s ease infinite;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 10px;
+            font-weight: 300;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Search Section */
+        .search-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), inset 0 0 30px rgba(0, 243, 255, 0.05);
+        }
+
+        /* Search Input */
+        .search-input-container {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        #gameSearch {
+            width: 100%;
+            padding: 20px 60px 20px 25px;
+            font-size: 1.2rem;
+            font-family: 'Heebo', sans-serif;
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(0, 243, 255, 0.3);
+            border-radius: 50px;
+            color: #fff;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        #gameSearch::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        #gameSearch:focus {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.3), inset 0 0 20px rgba(0, 243, 255, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: var(--neon-blue);
+        }
+
+        /* Filter Grid */
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .filter-select {
+            padding: 15px 20px;
+            font-size: 1rem;
+            font-family: 'Heebo', sans-serif;
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            color: #fff;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg fill='%2300f3ff' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: left 15px center;
+            padding-left: 45px;
+        }
+
+        .filter-select:hover {
+            border-color: rgba(0, 243, 255, 0.5);
+            background-color: rgba(0, 243, 255, 0.05);
+        }
+
+        .filter-select:focus {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+        }
+
+        .filter-select option {
+            background: #1a1a3a;
+            color: #fff;
+            padding: 10px;
+        }
+
+        /* Colored Filters */
+        #competencySelect { border-color: rgba(255, 100, 200, 0.5); }
+        #competencySelect:focus { border-color: #ff64c8; box-shadow: 0 0 20px rgba(255, 100, 200, 0.3); }
+
+        #knowledgeAreaSelect { border-color: rgba(255, 200, 100, 0.5); }
+        #knowledgeAreaSelect:focus { border-color: #ffc864; box-shadow: 0 0 20px rgba(255, 200, 100, 0.3); }
+
+        #skillSelect { border-color: rgba(100, 200, 255, 0.5); }
+        #skillSelect:focus { border-color: #64c8ff; box-shadow: 0 0 20px rgba(100, 200, 255, 0.3); }
+
+        #valueSelect { border-color: rgba(180, 100, 255, 0.5); }
+        #valueSelect:focus { border-color: #b464ff; box-shadow: 0 0 20px rgba(180, 100, 255, 0.3); }
+
+        #approachSelect { border-color: rgba(255, 100, 100, 0.5); }
+        #approachSelect:focus { border-color: #ff6464; box-shadow: 0 0 20px rgba(255, 100, 100, 0.3); }
+
+        #platformSelect { border-color: rgba(100, 255, 200, 0.5); }
+        #platformSelect:focus { border-color: #64ffc8; box-shadow: 0 0 20px rgba(100, 255, 200, 0.3); }
+
+        #playersSelect { border-color: rgba(255, 200, 50, 0.5); }
+        #playersSelect:focus { border-color: #ffc832; box-shadow: 0 0 20px rgba(255, 200, 50, 0.3); }
+
+        /* Checkboxes */
+        .checkbox-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 12px 25px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .checkbox-label:hover {
+            border-color: var(--neon-green);
+            background: rgba(0, 255, 136, 0.1);
+        }
+
+        .checkbox-label input {
+            display: none;
+        }
+
+        .checkbox-custom {
+            width: 24px;
+            height: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-label input:checked + .checkbox-custom {
+            background: var(--neon-green);
+            border-color: var(--neon-green);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+        }
+
+        .checkbox-custom::after {
+            content: '✓';
+            color: transparent;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-label input:checked + .checkbox-custom::after {
+            color: #000;
+        }
+
+        /* Results Counter */
+        .results-counter {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .results-counter span {
+            color: var(--neon-blue);
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+        }
+
+        /* Games Grid */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        /* Game Card */
+        .game-card {
+            background: var(--card-bg);
+            border-radius: 25px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(0, 243, 255, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--neon-blue);
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 0 40px rgba(0, 243, 255, 0.2),
+                inset 0 0 60px rgba(0, 243, 255, 0.05);
+        }
+
+        .game-card:hover::before {
+            opacity: 1;
+        }
+
+        .game-image-container {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .game-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .game-card:hover .game-image {
+            transform: scale(1.1);
+        }
+
+        .game-image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        }
+
+        .game-badges {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            max-width: 70%;
+            justify-content: flex-end;
+        }
+
+        .badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .badge-free {
+            background: rgba(0, 255, 136, 0.9);
+            color: #000;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+        }
+
+        .badge-multiplayer {
+            background: rgba(0, 243, 255, 0.9);
+            color: #000;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+        }
+
+        .game-content {
+            padding: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .game-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #fff, var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .game-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: rgba(0, 243, 255, 0.2);
+            border-color: var(--neon-blue);
+        }
+
+        .tag-competency { border-color: rgba(255, 100, 200, 0.5); color: #ff64c8; }
+        .tag-knowledge { border-color: rgba(255, 200, 100, 0.5); color: #ffc864; }
+        .tag-skill { border-color: rgba(100, 200, 255, 0.5); color: #64c8ff; }
+        .tag-value { border-color: rgba(180, 100, 255, 0.5); color: #b464ff; }
+        .tag-approach { border-color: rgba(255, 100, 100, 0.5); color: #ff6464; }
+
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .info-icon {
+            font-size: 1.5rem;
+        }
+
+        .info-text {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .game-link {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            text-align: center;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+            color: #fff;
+            text-decoration: none;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .game-link:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 243, 255, 0.4);
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .no-results-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+
+        .no-results h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        footer a {
+            color: var(--neon-blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--neon-purple);
+        }
+
+        /* Clear Filters Button */
+        .clear-filters {
+            padding: 12px 30px;
+            background: transparent;
+            border: 2px solid rgba(255, 100, 100, 0.5);
+            color: #ff6464;
+            border-radius: 50px;
+            font-family: 'Heebo', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .clear-filters:hover {
+            background: rgba(255, 100, 100, 0.2);
+            border-color: #ff6464;
+            box-shadow: 0 0 20px rgba(255, 100, 100, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo-container {
+                flex-direction: column;
+            }
+
+            .logo-icon {
+                width: 60px;
+                height: 60px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                letter-spacing: 1px;
+            }
+
+            .search-section {
+                padding: 20px;
+                border-radius: 20px;
+            }
+
+            #gameSearch {
+                padding: 15px 50px 15px 20px;
+                font-size: 1rem;
+            }
+
+            .filters-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .checkbox-container {
+                flex-direction: column;
+            }
+
+            .games-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .game-info {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+
+            header {
+                padding: 20px 10px;
+            }
+
+            .game-content {
+                padding: 15px;
+            }
+        }
+
+        /* Animation for cards appearing */
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .game-card {
+            animation: cardAppear 0.5s ease forwards;
+        }
+
+        /* Stagger animation */
+        .game-card:nth-child(1) { animation-delay: 0.05s; }
+        .game-card:nth-child(2) { animation-delay: 0.1s; }
+        .game-card:nth-child(3) { animation-delay: 0.15s; }
+        .game-card:nth-child(4) { animation-delay: 0.2s; }
+        .game-card:nth-child(5) { animation-delay: 0.25s; }
+        .game-card:nth-child(6) { animation-delay: 0.3s; }
+        .game-card:nth-child(7) { animation-delay: 0.35s; }
+        .game-card:nth-child(8) { animation-delay: 0.4s; }
+        .game-card:nth-child(9) { animation-delay: 0.45s; }
+        .game-card:nth-child(10) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="particles" id="particles"></div>
+
+    <header>
+        <div class="logo-container">
+            <img src="https://th.bing.com/th/id/OIG3.8rmEMC9A_ysIRoa2H5Db?w=1024&h=1024&rs=1&pid=ImgDetMain" alt="Logo" class="logo-icon">
+            <h1>Gaming & Learning Engine</h1>
+        </div>
+        <p class="subtitle">מנוע חיפוש משחקים חינוכיים - למד דרך משחק</p>
+    </header>
+
+    <div class="container">
+        <section class="search-section">
+            <div class="search-input-container">
+                <input type="text" id="gameSearch" placeholder="חפש משחק..." autocomplete="off">
+                <span class="search-icon">🔍</span>
+            </div>
+
+            <div class="filters-grid">
+                <select id="competencySelect" class="filter-select">
+                    <option value="">כשירות</option>
+                </select>
+                <select id="knowledgeAreaSelect" class="filter-select">
+                    <option value="">תחום ידע</option>
+                </select>
+                <select id="skillSelect" class="filter-select">
+                    <option value="">מיומנות</option>
+                </select>
+                <select id="valueSelect" class="filter-select">
+                    <option value="">ערך</option>
+                </select>
+                <select id="approachSelect" class="filter-select">
+                    <option value="">גישה</option>
+                </select>
+                <select id="platformSelect" class="filter-select">
+                    <option value="">פלטפורמה</option>
+                    <option value="מחשב">💻 מחשב</option>
+                    <option value="נינטנדו">🎮 נינטנדו</option>
+                    <option value="אקסבוקס">🎯 אקסבוקס</option>
+                    <option value="פלייסטיישן">🕹️ פלייסטיישן</option>
+                    <option value="VR">🥽 VR</option>
+                    <option value="סמארטפון">📱 סמארטפון</option>
+                </select>
+                <select id="playersSelect" class="filter-select">
+                    <option value="">מספר שחקנים</option>
+                    <option value="1">👤 שחקן אחד</option>
+                    <option value="2">👥 2 שחקנים</option>
+                    <option value="4">👨‍👩‍👧‍👦 4 שחקנים</option>
+                    <option value="6">👨‍👩‍👧‍👦 6 שחקנים</option>
+                    <option value="10">🎉 10 שחקנים</option>
+                </select>
+            </div>
+
+            <div class="checkbox-container">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="freeGameCheckbox">
+                    <span class="checkbox-custom"></span>
+                    🆓 משחק חינמי
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="multiplayerCheckbox">
+                    <span class="checkbox-custom"></span>
+                    🌐 מולטיפלייר
+                </label>
+                <button class="clear-filters" onclick="clearAllFilters()">🗑️ נקה סינונים</button>
+            </div>
+        </section>
+
+        <div class="results-counter">
+            נמצאו <span id="resultsCount">0</span> משחקים
+        </div>
+
+        <div id="gamesGrid" class="games-grid"></div>
+    </div>
+
+    <footer>
+        <p>Gaming & Learning Engine © 2024</p>
+        <p>מנוע חיפוש משחקים חינוכיים</p>
+    </footer>
+
+    <script>
+        // Games Database
+        const games = [
+            {
+                name: "Minecraft",
+                image: "https://static.wixstatic.com/media/caf596_aadead747719462a8f2ea3c59f39f2f5~mv2.jpeg",
+                competencies: ["חשיבה מיחשובית", "יזמות וחדשנות"],
+                knowledgeAreas: ["אנגלית"],
+                skills: ["יצירתיות", "פתרון בעיות", "שיתוף פעולה"],
+                values: [],
+                approaches: ["סקרנות"],
+                platforms: ["מחשב", "נינטנדו", "אקסבוקס"],
+                players: [1, 2, 4],
+                free: false,
+                multiplayer: true,
+                link: "Minecraft.html"
+            },
+            {
+                name: "Baba Is You",
+                image: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/736260/header.jpg?t=1698353847",
+                competencies: ["חשיבה מערכתית", "חשיבה מיחשובית"],
+                knowledgeAreas: ["אנגלית"],
+                skills: ["פתרון בעיות"],
+                values: [],
+                approaches: [],
+                platforms: ["מחשב", "נינטנדו"],
+                players: [1],
+                free: false,
+                multiplayer: false,
+                link: "Baba Is You.html"
+            },
+            {
+                name: "Civilization VI",
+                image: "https://static.wixstatic.com/media/caf596_abcfd4921dcb4db7bc1b4c5d7fe57aa4~mv2.png",
+                competencies: ["חשיבה אסטרטגית", "יישוב מתחים ודילמות", "אוריינות פיננסית"],
+                knowledgeAreas: ["אנגלית", "היסטוריה"],
+                skills: ["קבלת החלטות", "ניהול משאבים"],
+                values: ["שוויון", "צדק"],
+                approaches: [],
+                platforms: ["מחשב"],
+                players: [1, 4],
+                free: false,
+                multiplayer: true,
+                link: "Civilization VI GamePage.html"
+            },
+            {
+                name: "What Remains of Edith Finch",
+                image: "https://static.wixstatic.com/media/caf596_fc33dabfb7a640b4a7272606d552296b~mv2.jpeg",
+                competencies: [],
+                knowledgeAreas: ["אנגלית"],
+                skills: ["פתרון בעיות"],
+                values: ["זהות"],
+                approaches: ["חוסן", "תחושת שייכות"],
+                platforms: ["מחשב"],
+                players: [1],
+                free: false,
+                multiplayer: false,
+                link: "What Remains of Edith Finch.html"
+            },
+            {
+                name: "Beat Saber",
+                image: "https://static.wixstatic.com/media/caf596_6e1796af08e0477bbb4ed2dc1b75abe8~mv2.jpg",
+                competencies: [],
+                knowledgeAreas: ["חנ''ג"],
+                skills: ["מיומנות לאומנות, מוסיקה וחינוך גופני"],
+                values: ["סקרנות"],
+                approaches: ["מודעות עצמית"],
+                platforms: ["VR"],
+                players: [1],
+                free: false,
+                multiplayer: false,
+                link: "Beat Saber.html"
+            },
+            {
+                name: "Ring Fit Adventure",
+                image: "https://www.nintendo.co.il/wp-content/uploads/2021/05/ring-fit-adventure-switch-hero.jpg",
+                competencies: [],
+                knowledgeAreas: ["חנ''ג"],
+                skills: ["מיומנות לאומנות, מוסיקה וחינוך גופני"],
+                values: ["סקרנות"],
+                approaches: ["מודעות עצמית"],
+                platforms: ["נינטנדו"],
+                players: [1],
+                free: false,
+                multiplayer: false,
+                link: "Ring Fit Adventure.html"
+            },
+            {
+                name: "Kerbal Space Program",
+                image: "https://static.wixstatic.com/media/caf596_2d3f9d0fa0c64e4e8789cef21373db15~mv2.jpeg",
+                competencies: ["חשיבה מערכתית"],
+                knowledgeAreas: ["אנגלית", "מדעים"],
+                skills: ["חשיבה מיחשובית", "חשיבה רפלקטיבית"],
+                values: [],
+                approaches: ["סקרנות", "מוטיבציה"],
+                platforms: ["מחשב", "אקסבוקס"],
+                players: [1],
+                free: false,
+                multiplayer: false,
+                link: "Kerbal Space Program.html"
+            },
+            {
+                name: "Roller Coaster Tycoon",
+                image: "https://static.wixstatic.com/media/caf596_cd917ef9760042c9b977594712f8a0fe~mv2.png",
+                competencies: ["אוריינות פיננסית"],
+                knowledgeAreas: [],
+                skills: ["יצירתיות", "פתרון בעיות"],
+                values: [],
+                approaches: ["תחושת שייכות", "אחריות"],
+                platforms: ["מחשב", "נינטנדו", "אקסבוקס"],
+                players: [1],
+                free: false,
+                multiplayer: false,
+                link: "RoolerCoaster Tycoon.html"
+            },
+            {
+                name: "SimCity",
+                image: "https://static.wixstatic.com/media/caf596_a3eb9b7340be4ab99f907539a84e8b74~mv2.jpeg",
+                competencies: ["אוריינות פיננסית", "יישוב מתחים ודילמות"],
+                knowledgeAreas: ["אנגלית", "מדעים"],
+                skills: ["יצירתיות"],
+                values: [],
+                approaches: [],
+                platforms: ["מחשב", "נינטנדו", "אקסבוקס"],
+                players: [1],
+                free: false,
+                multiplayer: false,
+                link: "Sim City 4.html"
+            },
+            {
+                name: "It Takes Two",
+                image: "https://static.wixstatic.com/media/caf596_f5a1c1afa6c041718fa8172600c9f69f~mv2.png",
+                competencies: ["ישוב מתחים ודילמות", "לקיחת אחריות", "חשיבה מערכתית", "פעלנות"],
+                knowledgeAreas: ["אנגלית"],
+                skills: ["פתרון בעיות", "יצירתיות", "שיתוף פעולה"],
+                values: [],
+                approaches: ["אחריות", "תחושת שייכות"],
+                platforms: ["מחשב", "פלייסטיישן", "אקסבוקס", "נינטנדו"],
+                players: [2],
+                free: false,
+                multiplayer: true,
+                link: "It Takes Two.html"
+            },
+            {
+                name: "Overcooked 2",
+                image: "https://static.wixstatic.com/media/caf596_807f3988da994dcfaef789eb229ce224~mv2.jpg",
+                competencies: ["ישוב מתחים ודילמות", "לקיחת אחריות", "פעלנות"],
+                knowledgeAreas: ["אנגלית"],
+                skills: ["פתרון בעיות", "שיתוף פעולה"],
+                values: [],
+                approaches: ["אחריות"],
+                platforms: ["מחשב", "פלייסטיישן", "אקסבוקס", "נינטנדו"],
+                players: [2, 4],
+                free: false,
+                multiplayer: true,
+                link: "Overcooked 2 GamePage.html"
+            },
+            {
+                name: "Lego Star Wars",
+                image: "https://static.wixstatic.com/media/caf596_6180bf326f894172aecfbaa91313e624~mv2.jpg",
+                competencies: ["לקיחת אחריות", "פעלנות"],
+                knowledgeAreas: ["מדעים", "אנגלית"],
+                skills: ["פתרון בעיות", "שיתוף פעולה"],
+                values: [],
+                approaches: ["אמפתיה"],
+                platforms: ["מחשב", "פלייסטיישן", "אקסבוקס", "נינטנדו"],
+                players: [2, 4],
+                free: false,
+                multiplayer: false,
+                link: "Lego Star Wars.html"
+            },
+            {
+                name: "Portal 2",
+                image: "https://static.wixstatic.com/media/caf596_4acd27647a8a461f8e6c09c3c82afa41~mv2.jpg",
+                competencies: ["חשיבה מערכתית", "יזמות וחדשנות", "חשיבה מיחשובית"],
+                knowledgeAreas: ["מדעים", "אנגלית"],
+                skills: ["שיתוף פעולה", "יצירתיות"],
+                values: [],
+                approaches: ["סקרנות"],
+                platforms: ["מחשב", "פלייסטיישן", "אקסבוקס", "נינטנדו"],
+                players: [2],
+                free: false,
+                multiplayer: true,
+                link: "Portal 2.html"
+            },
+            {
+                name: "Football Manager",
+                image: "https://static.wixstatic.com/media/caf596_a496d8adaf87431bb19a1b178a823bf0~mv2.jpg",
+                competencies: ["חשיבה מערכתית", "אוריינות פיננסית", "יישוב מתחים ודילמות", "לקיחת אחריות", "חשיבת עתיד"],
+                knowledgeAreas: ["מדעי הנתונים", "אנגלית"],
+                skills: ["שימוש בטכנולוגיות מידע ותקשורת", "יצירתיות"],
+                values: ["זהות"],
+                approaches: [],
+                platforms: ["מחשב", "נינטנדו", "פלייסטיישן", "אקסבוקס"],
+                players: [1],
+                free: false,
+                multiplayer: true,
+                link: "Football Manager.html"
+            },
+            {
+                name: "PC Building Simulator",
+                image: "https://static.wixstatic.com/media/caf596_5b48df015890493ba0ba71a0920baafd~mv2.jpg",
+                competencies: ["חשיבה מערכתית", "אוריינות פיננסית", "יישוב מתחים ודילמות", "לקיחת אחריות"],
+                knowledgeAreas: ["אלקטרוניקה", "אנגלית"],
+                skills: ["שימוש בטכנולוגיות מידע ותקשורת", "פתרון בעיות"],
+                values: [],
+                approaches: [],
+                platforms: ["מחשב", "נינטנדו", "פלייסטיישן", "אקסבוקס"],
+                players: [1],
+                free: false,
+                multiplayer: false,
+                link: "PC Building Simulator.html"
+            },
+            {
+                name: "Mini Metro",
+                image: "https://static.wixstatic.com/media/caf596_2046d49bfbae4f1b89923013352c7632~mv2.png",
+                competencies: ["חשיבה מערכתית", "חשיבה מיחשובית", "אוריינות פיננסית"],
+                knowledgeAreas: ["מתמטיקה"],
+                skills: ["זמישות", "פתרון בעיות"],
+                values: [],
+                approaches: ["חוסן"],
+                platforms: ["מחשב", "נינטנדו", "פלייסטיישן", "סמארטפון"],
+                players: [1],
+                free: false,
+                multiplayer: false,
+                link: "Mini Metro.html"
+            },
+            {
+                name: "NBA 2K",
+                image: "https://static.wixstatic.com/media/caf596_2d1db116cfcc47b898f613f7bd55659b~mv2.jpg",
+                competencies: ["חשיבה מערכתית", "לקיחת אחריות", "אוריינות פיננסית"],
+                knowledgeAreas: ["מדעי הנתונים", "אנגלית"],
+                skills: ["שיתוף פעולה", "חשיבה רפלקטיבית"],
+                values: ["זהות"],
+                approaches: ["חוסן", "תחושת שייכות", "מוטיבציה"],
+                platforms: ["מחשב", "נינטנדו", "פלייסטיישן"],
+                players: [1, 2, 4],
+                free: false,
+                multiplayer: true,
+                link: "NBA2K.html"
+            },
+            {
+                name: "FIFA 25",
+                image: "https://static.wixstatic.com/media/caf596_676ac3a908fe4fe8aec99d24496c9522~mv2.jpg",
+                competencies: ["חשיבה מערכתית", "לקיחת אחריות", "אוריינות פיננסית"],
+                knowledgeAreas: ["מדעי הנתונים", "אנגלית"],
+                skills: ["שיתוף פעולה", "חשיבה רפלקטיבית"],
+                values: ["זהות"],
+                approaches: ["חוסן", "תחושת שייכות", "מוטיבציה"],
+                platforms: ["מחשב", "נינטנדו", "אקסבוקס", "פלייסטיישן"],
+                players: [1, 2, 4],
+                free: false,
+                multiplayer: true,
+                link: "Fifa 25.html"
+            },
+            {
+                name: "F1 24",
+                image: "https://static.wixstatic.com/media/caf596_ddea9b271cb14cafa94384e807b54e18~mv2.jpg",
+                competencies: ["חשיבה מערכתית"],
+                knowledgeAreas: ["מדעי הנתונים", "אנגלית"],
+                skills: ["זמישות", "מיומנויות לאמנות, מוסיקה וחינוך גופני"],
+                values: ["זהות"],
+                approaches: ["חוסן", "מודעות עצמית"],
+                platforms: ["מחשב", "אקסבוקס", "VR", "פלייסטיישן"],
+                players: [1, 2],
+                free: false,
+                multiplayer: true,
+                link: "F124.html"
+            },
+            {
+                name: "Microsoft Flight Simulator",
+                image: "https://static.wixstatic.com/media/caf596_39b58ec2660445698f2236c0541252a1~mv2.jpg",
+                competencies: ["חשיבה מערכתית", "אוריינות גלובלית"],
+                knowledgeAreas: ["גיאוגרפיה", "אנגלית"],
+                skills: ["זמישות"],
+                values: [],
+                approaches: [],
+                platforms: ["אקסבוקס", "VR", "מחשב"],
+                players: [1],
+                free: false,
+                multiplayer: false,
+                link: "Microsoft Flight Simulator.html"
+            },
+            {
+                name: "Skribbl.io",
+                image: "https://static.wixstatic.com/media/caf596_b181f0c1f02f4f149c74227eb8ccc218~mv2.png",
+                competencies: ["חשיבה מערכתית", "אוריינות גלובלית"],
+                knowledgeAreas: ["עברית", "אנגלית"],
+                skills: ["יצירתיות", "שיתוף פעולה"],
+                values: [],
+                approaches: ["סקרנות"],
+                platforms: ["סמארטפון", "מחשב"],
+                players: [4, 10],
+                free: true,
+                multiplayer: true,
+                link: "Skribble.html"
+            },
+            {
+                name: "Codenames",
+                image: "https://static.wixstatic.com/media/caf596_58c41ab299bb47eebe59404b07ea082c~mv2.png",
+                competencies: ["חשיבה מערכתית"],
+                knowledgeAreas: ["עברית", "אנגלית"],
+                skills: ["יצירתיות", "שיתוף פעולה", "חשיבה ביקורתית"],
+                values: [],
+                approaches: ["אמון"],
+                platforms: ["סמארטפון", "מחשב"],
+                players: [2, 4, 6],
+                free: true,
+                multiplayer: true,
+                link: "CodeNames.html"
+            },
+            {
+                name: "Conflict",
+                image: "https://static.wixstatic.com/media/caf596_fa92ed7df9c94fce89a204eec6ad24e1~mv2.jpg",
+                competencies: ["אוריינות פיננסית", "יישוב מתחים ודילמות", "חשיבה מערכתית", "חשיבה אסטרטגית"],
+                knowledgeAreas: ["גיאוגרפיה", "היסטוריה", "אנגלית"],
+                skills: ["פתרון סכסוכים", "חשיבה רפלקטיבית", "חשיבה ביקורתית"],
+                values: [],
+                approaches: ["תחושת שייכות", "אחריות"],
+                platforms: ["מחשב"],
+                players: [1],
+                free: true,
+                multiplayer: false,
+                link: "Conflict.html"
+            },
+            {
+                name: "Keep Talking and Nobody Explodes",
+                image: "https://static.wixstatic.com/media/caf596_2b9a60ef0d1b4c9db7778eb1a1e1f476~mv2.jpg",
+                competencies: ["פעלנות", "יישוב מתחים ודילמות", "חשיבה מיחשובית", "חשיבה מערכתית"],
+                knowledgeAreas: ["עברית", "אנגלית"],
+                skills: ["שיתוף פעולה", "זמישות", "פתרון בעיות"],
+                values: ["זהות"],
+                approaches: ["פרואקטיביות", "אחריות"],
+                platforms: ["מחשב"],
+                players: [2, 4, 6],
+                free: false,
+                multiplayer: true,
+                link: "Keep Taliking And Nobody Expoldes.html"
+            }
+        ];
+
+        // Platform icons mapping
+        const platformIcons = {
+            'מחשב': '💻',
+            'נינטנדו': '🎮',
+            'אקסבוקס': '🎯',
+            'פלייסטיישן': '🕹️',
+            'VR': '🥽',
+            'סמארטפון': '📱'
+        };
+
+        // Populate filter options
+        function populateFilters() {
+            const selects = {
+                competencySelect: new Set(),
+                knowledgeAreaSelect: new Set(),
+                skillSelect: new Set(),
+                valueSelect: new Set(),
+                approachSelect: new Set()
+            };
+
+            games.forEach(game => {
+                game.competencies.forEach(c => selects.competencySelect.add(c));
+                game.knowledgeAreas.forEach(k => selects.knowledgeAreaSelect.add(k));
+                game.skills.forEach(s => selects.skillSelect.add(s));
+                game.values.forEach(v => selects.valueSelect.add(v));
+                game.approaches.forEach(a => selects.approachSelect.add(a));
+            });
+
+            Object.entries(selects).forEach(([selectId, options]) => {
+                const select = document.getElementById(selectId);
+                [...options].sort().forEach(option => {
+                    select.innerHTML += `<option value="${option}">${option}</option>`;
+                });
+            });
+        }
+
+        // Filter games
+        function filterGames() {
+            const searchTerm = document.getElementById('gameSearch').value.toLowerCase();
+            const filters = {
+                competency: document.getElementById('competencySelect').value,
+                knowledgeArea: document.getElementById('knowledgeAreaSelect').value,
+                skill: document.getElementById('skillSelect').value,
+                value: document.getElementById('valueSelect').value,
+                approach: document.getElementById('approachSelect').value,
+                platform: document.getElementById('platformSelect').value,
+                players: document.getElementById('playersSelect').value
+            };
+            const isFreeOnly = document.getElementById('freeGameCheckbox').checked;
+            const isMultiplayerOnly = document.getElementById('multiplayerCheckbox').checked;
+
+            const filtered = games.filter(game => {
+                if (searchTerm && !game.name.toLowerCase().includes(searchTerm)) return false;
+                if (filters.competency && !game.competencies.includes(filters.competency)) return false;
+                if (filters.knowledgeArea && !game.knowledgeAreas.includes(filters.knowledgeArea)) return false;
+                if (filters.skill && !game.skills.includes(filters.skill)) return false;
+                if (filters.value && !game.values.includes(filters.value)) return false;
+                if (filters.approach && !game.approaches.includes(filters.approach)) return false;
+                if (filters.platform && !game.platforms.includes(filters.platform)) return false;
+                if (filters.players && !game.players.includes(parseInt(filters.players))) return false;
+                if (isFreeOnly && !game.free) return false;
+                if (isMultiplayerOnly && !game.multiplayer) return false;
+                return true;
+            });
+
+            displayGames(filtered);
+        }
+
+        // Shuffle array
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        // Display games
+        function displayGames(gamesToShow) {
+            const grid = document.getElementById('gamesGrid');
+            const counter = document.getElementById('resultsCount');
+
+            const shuffled = shuffleArray(gamesToShow);
+            counter.textContent = shuffled.length;
+
+            if (shuffled.length === 0) {
+                grid.innerHTML = `
+                    <div class="no-results" style="grid-column: 1 / -1;">
+                        <div class="no-results-icon">🎮</div>
+                        <h3>לא נמצאו משחקים</h3>
+                        <p>נסה לשנות את הסינונים או לחפש משהו אחר</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = shuffled.map(game => {
+                const allTags = [
+                    ...game.competencies.map(c => `<span class="tag tag-competency">${c}</span>`),
+                    ...game.knowledgeAreas.map(k => `<span class="tag tag-knowledge">${k}</span>`),
+                    ...game.skills.slice(0, 2).map(s => `<span class="tag tag-skill">${s}</span>`),
+                    ...game.values.map(v => `<span class="tag tag-value">${v}</span>`),
+                    ...game.approaches.slice(0, 2).map(a => `<span class="tag tag-approach">${a}</span>`)
+                ].slice(0, 6).join('');
+
+                const platformsDisplay = game.platforms.map(p => platformIcons[p] || p).join(' ');
+                const playersDisplay = game.players.length === 1 ? game.players[0] : `${Math.min(...game.players)}-${Math.max(...game.players)}`;
+
+                return `
+                    <div class="game-card">
+                        <div class="game-image-container">
+                            <img src="${game.image}" alt="${game.name}" class="game-image" loading="lazy">
+                            <div class="game-image-overlay"></div>
+                            <div class="game-badges">
+                                ${game.free ? '<span class="badge badge-free">חינמי</span>' : ''}
+                                ${game.multiplayer ? '<span class="badge badge-multiplayer">מולטיפלייר</span>' : ''}
+                            </div>
+                        </div>
+                        <div class="game-content">
+                            <h3 class="game-title">${game.name}</h3>
+                            <div class="game-tags">${allTags}</div>
+                            <div class="game-info">
+                                <div class="info-item">
+                                    <span class="info-icon">👥</span>
+                                    <span class="info-text">${playersDisplay} שחקנים</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-icon">🎮</span>
+                                    <span class="info-text">${platformsDisplay}</span>
+                                </div>
+                            </div>
+                            <a href="Gaming And Learning Engine/${game.link}" class="game-link" target="_blank">לעמוד המשחק</a>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Clear all filters
+        function clearAllFilters() {
+            document.getElementById('gameSearch').value = '';
+            document.getElementById('competencySelect').value = '';
+            document.getElementById('knowledgeAreaSelect').value = '';
+            document.getElementById('skillSelect').value = '';
+            document.getElementById('valueSelect').value = '';
+            document.getElementById('approachSelect').value = '';
+            document.getElementById('platformSelect').value = '';
+            document.getElementById('playersSelect').value = '';
+            document.getElementById('freeGameCheckbox').checked = false;
+            document.getElementById('multiplayerCheckbox').checked = false;
+            filterGames();
+        }
+
+        // Create particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const colors = ['#00f3ff', '#b400ff', '#ff00ea', '#00ff88'];
+
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.boxShadow = `0 0 10px ${particle.style.background}, 0 0 20px ${particle.style.background}`;
+                container.appendChild(particle);
+            }
+        }
+
+        // Initialize
+        function init() {
+            createParticles();
+            populateFilters();
+            filterGames();
+
+            // Add event listeners
+            document.getElementById('gameSearch').addEventListener('input', filterGames);
+            document.querySelectorAll('.filter-select').forEach(select => {
+                select.addEventListener('change', filterGames);
+            });
+            document.getElementById('freeGameCheckbox').addEventListener('change', filterGames);
+            document.getElementById('multiplayerCheckbox').addEventListener('change', filterGames);
+        }
+
+        // Run on load
+        init();
+    </script>
+</body>
+</html>

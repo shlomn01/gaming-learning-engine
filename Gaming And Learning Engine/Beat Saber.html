@@ -1,0 +1,238 @@
+<html><head><base href="https://websim.creation.engine/beatsaber/" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beat Saber: משחק קצב VR - גיימינג חינוכי</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Oswald:wght@500&display=swap');
+
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', sans-serif;
+        line-height: 1.6;
+        color: #333;
+        direction: rtl;
+        background: #f0f4f8;
+        overflow-x: hidden;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    header {
+        text-align: center;
+        padding: 60px 0;
+        background: linear-gradient(45deg, #ff0055, #6600ff);
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+    }
+    header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('beatsaber-header-bg.jpg') no-repeat center center;
+        background-size: cover;
+        opacity: 0.3;
+        z-index: 0;
+    }
+    h1 {
+        margin: 0;
+        font-size: 3em;
+        font-family: 'Oswald', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        position: relative;
+        z-index: 1;
+    }
+    section {
+        margin-bottom: 30px;
+        padding: 25px;
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+    h2 {
+        color: #ff0055;
+        font-family: 'Oswald', sans-serif;
+        border-bottom: 2px solid #6600ff;
+        padding-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .game-image {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 20px auto;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    .links a {
+        display: inline-block;
+        margin: 10px;
+        padding: 12px 24px;
+        background: linear-gradient(45deg, #ff0055, #6600ff);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .links a:hover {
+        background: linear-gradient(45deg, #6600ff, #ff0055);
+        transform: translateY(-3px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        padding-top: 30px;
+        height: 0;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 15px;
+    }
+    .home-button {
+        display: block;
+        width: 200px;
+        margin: 40px auto;
+        padding: 15px;
+        background: linear-gradient(45deg, #ff0055, #6600ff);
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        overflow: hidden;
+    }
+    .home-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+    .home-button::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: rgba(255,255,255,0.2);
+        transform: rotate(45deg);
+        transition: all 0.3s ease;
+    }
+    .home-button:hover::after {
+        left: 100%;
+    }
+    ul, ol {
+        padding-right: 20px;
+    }
+    li {
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Beat Saber</h1>
+    </header>
+    <div class="container">
+        <section>
+            <h2>על המשחק</h2>
+            <p>Beat Saber הוא משחק מציאות מדומה (VR) מרהיב שמשלב בין קצב, ריקוד וכושר גופני. במשחק, השחקנים מנופפים בחרבות אור כדי לחתוך קוביות המגיעות לקצב המוזיקה, תוך כדי הימנעות ממכשולים. המשחק מציע חוויה ייחודית המשלבת תנועה פיזית עם קואורדינציה ותזמון מדויק.</p>
+            <img src="https://static.wixstatic.com/media/caf596_6e1796af08e0477bbb4ed2dc1b75abe8~mv2.jpg" alt="תמונת משחק של Beat Saber המציגה שחקן חותך קוביות באמצעות חרבות אור" class="game-image" width="800" height="450">
+        </section>
+
+        <section class="links">
+            <h2>קישורים למשחק</h2>
+            <a href="https://beatsaber.com/">אתר רשמי</a>
+            <a href="https://store.steampowered.com/app/620980/Beat_Saber/">Steam</a>
+        </section>
+
+        <section>
+            <h2>מה לומדים כאן?</h2>
+            <ul>
+                <li><strong>קואורדינציה:</strong> שיפור התיאום בין העיניים לידיים ותנועות הגוף.</li>
+                <li><strong>קצב ומוזיקליות:</strong> פיתוח חוש קצב ויכולת לזהות ולהגיב לדפוסים מוזיקליים.</li>
+                <li><strong>זריזות ורפלקסים:</strong> שיפור זמן תגובה ויכולת לקבל החלטות מהירות.</li>
+                <li><strong>כושר גופני:</strong> אימון אירובי ושריפת קלוריות תוך כדי משחק.</li>
+                <li><strong>ריכוז ומיקוד:</strong> פיתוח יכולת להתרכז לאורך זמן ולהתעלם מהסחות דעת.</li>
+                <li><strong>תפיסה מרחבית:</strong> שיפור היכולת לנווט ולהתמצא במרחב תלת-ממדי.</li>
+                <li><strong>התמדה ומוטיבציה:</strong> עידוד להתמיד ולשפר ביצועים לאורך זמן.</li>
+                <li><strong>ניהול לחץ:</strong> למידה כיצד להישאר רגוע ומרוכז תחת לחץ.</li>
+                <li><strong>יצירתיות:</strong> עידוד לפתח סגנון משחק אישי ויצירתי.</li>
+                <li><strong>טכנולוגיה:</strong> היכרות עם טכנולוגיית מציאות מדומה ויישומיה.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>תוכנית לימודים</h2>
+            <p>שילוב Beat Saber בכיתה יכול להעשיר את הלמידה במגוון תחומים:</p>
+            <ol>
+                <li><strong>חינוך גופני:</strong> שיעורי כושר וקואורדינציה מבוססי משחק.</li>
+                <li><strong>מוזיקה:</strong> לימוד על מבנה מוזיקלי, קצב והרמוניה.</li>
+                <li><strong>פיזיקה:</strong> המחשת עקרונות של תנועה, מהירות ותאוצה.</li>
+                <li><strong>מתמטיקה:</strong> ניתוח נתונים וסטטיסטיקות של ביצועי המשחק.</li>
+                <li><strong>אמנות ועיצוב:</strong> יצירת רמות משחק מותאמות אישית.</li>
+                <li><strong>טכנולוגיה:</strong> לימוד על מציאות מדומה ופיתוח משחקים.</li>
+                <li><strong>פסיכולוגיה:</strong> חקירת השפעות המשחק על מצב רוח וריכוז.</li>
+                <li><strong>ביולוגיה:</strong> הבנת השפעות הפעילות הגופנית על הגוף.</li>
+                <li><strong>יזמות:</strong> פיתוח רעיונות למוצרים או שירותים נלווים למשחק.</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>סרטון הדגמה של המשחק</h2>
+            <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/vL39Sg2AqWg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <section>
+            <h2>קישורים נוספים</h2>
+            <ul>
+                <li><a href="https://bsaber.com/">BeastSaber - מאגר שירים ומפות מותאמות אישית</a></li>
+                <li><a href="https://scoresaber.com/">ScoreSaber - טבלאות דירוג עולמיות</a></li>
+                <li><a href="https://bsmg.wiki/">Beat Saber Modding Group Wiki</a></li>
+                <li><a href="https://www.reddit.com/r/beatsaber/">קהילת Reddit של Beat Saber</a></li>
+                <li><a href="https://vrhealth.institute/portfolio/beat-saber/">VR Health Institute - מחקר על היתרונות הבריאותיים של Beat Saber</a></li>
+                <li><a href="https://www.vegaproject.eu/wp-content/uploads/2022/09/Music-with-Beat-Saber_EN.pdf">תוכנית לימודים במוזיקה - סביב המשחק</a></li>
+
+            </ul>
+        </section>
+
+        <a href="https://neufeldim.wixsite.com/edugamingengine" class="home-button">חזרה לדף הבית</a>
+    </div>
+
+    <script>
+        document.querySelectorAll('a').forEach(link => {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+        });
+    </script>
+</body>
+</html>

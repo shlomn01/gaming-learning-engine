@@ -1,0 +1,210 @@
+<html><head><base href="https://websim.creation.engine/conflict/" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conflict: משחק אסטרטגיה גיאופוליטי - גיימינג חינוכי</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap');
+
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', sans-serif;
+        line-height: 1.6;
+        color: #333;
+        direction: rtl;
+        background: #f0f4f8;
+        overflow-x: hidden;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    header {
+        text-align: center;
+        padding: 60px 0;
+        background: linear-gradient(45deg, #2c3e50, #34495e);
+        color: #ecf0f1;
+        position: relative;
+        overflow: hidden;
+    }
+    header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('conflict-header-bg.jpg') no-repeat center center;
+        background-size: cover;
+        opacity: 0.3;
+        z-index: 0;
+    }
+    h1 {
+        margin: 0;
+        font-size: 3em;
+        font-family: 'Playfair Display', serif;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        position: relative;
+        z-index: 1;
+    }
+    section {
+        margin-bottom: 30px;
+        padding: 25px;
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+    h2 {
+        color: #2c3e50;
+        font-family: 'Playfair Display', serif;
+        border-bottom: 2px solid #34495e;
+        padding-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .game-image {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 20px auto;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    .links a {
+        display: inline-block;
+        margin: 10px;
+        padding: 12px 24px;
+        background: linear-gradient(45deg, #2c3e50, #34495e);
+        color: #ecf0f1;
+        text-decoration: none;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .links a:hover {
+        background: linear-gradient(45deg, #34495e, #2c3e50);
+        transform: translateY(-3px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    .home-button {
+        display: block;
+        width: 200px;
+        margin: 40px auto;
+        padding: 15px;
+        background: linear-gradient(45deg, #2c3e50, #34495e);
+        color: #ecf0f1;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        overflow: hidden;
+    }
+    .home-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+    .home-button::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: rgba(255,255,255,0.2);
+        transform: rotate(45deg);
+        transition: all 0.3s ease;
+    }
+    .home-button:hover::after {
+        left: 100%;
+    }
+    ul, ol {
+        padding-right: 20px;
+    }
+    li {
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Conflict</h1>
+    </header>
+    <div class="container">
+        <section>
+            <h2>על המשחק</h2>
+            <p>Conflict הוא משחק אסטרטגיה גיאופוליטי ותיק, המדמה סכסוכים בין מדינות במזרח התיכון. המשחק מציג מפה של האזור, ומאפשר לשחקנים לקבל החלטות אסטרטגיות הנוגעות ליחסים בינלאומיים, דיפלומטיה, ומדיניות חוץ. <br> העלילה מתחילה ברצח ראש הממשלה, ואתה מתמנה להחליף את מקומו. אתה מתעדכן מדי חודש על היחסים בין המדינות השונות ועליך לנווט ביניהן בחוכמה, בדיפלומטיה, בבניית הצבא ובשמירה על הגבולות. <br> מעבר לתרומה של המשחק לחשיבה אסטרטגית שלעיתים היא מאד אקטואלית, המשחק מחייב קריאה וביצוע פעולות באנגלית.</p>
+            <img src="https://static.wixstatic.com/media/caf596_fa92ed7df9c94fce89a204eec6ad24e1~mv2.jpg" alt="מפת המזרח התיכון במשחק Conflict עם מדינות מסומנות בצבעים שונים" class="game-image" width="800" height="600">
+        </section>
+
+        <section class="links">
+            <h2>קישורים למשחק</h2>
+            <a href="https://www.old-games.org/onlineGame/conflict">המשחק באתר מסע אל העבר</a>
+            
+        </section>
+
+        <section>
+            <h2>מה לומדים כאן?</h2>
+            <ul>
+                <li><strong>גיאוגרפיה פוליטית:</strong> הכרת מפת המזרח התיכון ומיקום המדינות השונות.</li>
+                <li><strong>יחסים בינלאומיים:</strong> הבנת מורכבות היחסים בין מדינות באזור רגיש.</li>
+                <li><strong>דיפלומטיה:</strong> למידה על חשיבות המשא ומתן והדיאלוג בין מדינות.</li>
+                <li><strong>אסטרטגיה גיאופוליטית:</strong> פיתוח חשיבה אסטרטגית ברמה הבינלאומית.</li>
+                <li><strong>היסטוריה של המזרח התיכון:</strong> הכרת הרקע ההיסטורי לסכסוכים באזור.</li>
+                <li><strong>כלכלה בינלאומית:</strong> הבנת השפעות כלכליות על יחסי מדינות.</li>
+                <li><strong>ניהול משאבים:</strong> למידה על חשיבות ניהול נכון של משאבי המדינה.</li>
+                <li><strong>קבלת החלטות:</strong> התנסות בקבלת החלטות מורכבות עם השלכות ארוכות טווח.</li>
+                <li><strong>אתיקה במדיניות חוץ:</strong> התמודדות עם דילמות מוסריות בזירה הבינלאומית.</li>
+                <li><strong>ניתוח מידע:</strong> פיתוח יכולת לנתח מידע מורכב ולהסיק מסקנות.</li>
+		<li><strong>אנגלית:</strong> התמודדות עם קריאת כותרות עיתונים וקבלת החלטות באנגלית.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>תוכנית לימודים</h2>
+            <p>שילוב Conflict בכיתה יכול להעשיר את הלמידה במגוון תחומים:</p>
+            <ol>
+                <li><strong>גיאוגרפיה:</strong> לימוד מעמיק על מדינות המזרח התיכון ומאפייניהן.</li>
+                <li><strong>היסטוריה:</strong> חקירת הרקע ההיסטורי של הסכסוכים באזור.</li>
+                <li><strong>אזרחות:</strong> דיון על מערכות שלטון שונות ויחסי חוץ.</li>
+                <li><strong>כלכלה:</strong> הבנת ההשפעות הכלכליות של החלטות מדיניות.</li>
+                <li><strong>מדעי המדינה:</strong> ניתוח מערכות פוליטיות ודיפלומטיות.</li>
+                <li><strong>אתיקה:</strong> דיון בסוגיות מוסריות הקשורות למדיניות חוץ.</li>
+                <li><strong>מתמטיקה:</strong> ניתוח נתונים סטטיסטיים על מדינות ויחסיהן.</li>
+                <li><strong>אנגלית:</strong> למידת מונחים דיפלומטיים ופוליטיים באנגלית.</li>
+                <li><strong>מדעי הסביבה:</strong> בחינת השפעות סביבתיות של החלטות מדיניות.</li>
+                <li><strong>תקשורת:</strong> ניתוח תפקיד התקשורת ביחסים בינלאומיים.</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>קישורים נוספים</h2>
+            <ul>
+                <li><a href="https://www.themarker.com/captain-internet/2024-08-25/ty-article/00000191-89d8-dc67-ad97-bbd872ba0000">מאמר בדה מרקר על המשחק</a></li>
+            </ul>
+        </section>
+
+        <a href="https://neufeldim.wixsite.com/edugamingengine" class="home-button">חזרה לדף הבית</a>
+    </div>
+
+    <script>
+        document.querySelectorAll('a').forEach(link => {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+        });
+    </script>
+</body>
+</html>

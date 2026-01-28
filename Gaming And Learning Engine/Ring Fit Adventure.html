@@ -1,0 +1,218 @@
+<html><head><base href="https://websim.creation.engine/ring-fit-adventure/" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ring Fit Adventure: משחק כושר אינטראקטיבי - גיימינג חינוכי</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap');
+
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', sans-serif;
+        line-height: 1.6;
+        color: #333;
+        direction: rtl;
+        background: #f0f4f8;
+        overflow-x: hidden;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    header {
+        text-align: center;
+        padding: 60px 0;
+        background: linear-gradient(45deg, #ff4b2b, #ff416c);
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+    }
+    header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('ring-fit-adventure-bg.jpg') no-repeat center center;
+        background-size: cover;
+        opacity: 0.3;
+        z-index: 0;
+    }
+    h1 {
+        margin: 0;
+        font-size: 3em;
+        font-family: 'Playfair Display', serif;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        position: relative;
+        z-index: 1;
+    }
+    section {
+        margin-bottom: 30px;
+        padding: 25px;
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+    h2 {
+        color: #ff416c;
+        font-family: 'Playfair Display', serif;
+        border-bottom: 2px solid #ff4b2b;
+        padding-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .game-image {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 20px auto;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    .links a {
+        display: inline-block;
+        margin: 10px;
+        padding: 12px 24px;
+        background: linear-gradient(45deg, #ff4b2b, #ff416c);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .links a:hover {
+        background: linear-gradient(45deg, #ff416c, #ff4b2b);
+        transform: translateY(-3px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    .home-button {
+        display: block;
+        width: 200px;
+        margin: 40px auto;
+        padding: 15px;
+        background: linear-gradient(45deg, #ff4b2b, #ff416c);
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        overflow: hidden;
+    }
+    .home-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+    .home-button::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: rgba(255,255,255,0.2);
+        transform: rotate(45deg);
+        transition: all 0.3s ease;
+    }
+    .home-button:hover::after {
+        left: 100%;
+    }
+    ul, ol {
+        padding-right: 20px;
+    }
+    li {
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Ring Fit Adventure</h1>
+    </header>
+    <div class="container">
+        <section>
+            <h2>על המשחק</h2>
+            <p>Ring Fit Adventure הוא משחק כושר אינטראקטיבי ייחודי לקונסולת Nintendo Switch. המשחק משלב אימוני כושר עם הרפתקה מרתקת בעולם פנטזיה, כאשר השחקנים משתמשים ב-Ring-Con ו-Leg Strap כדי לשלוט במשחק באמצעות תנועות גופניות.</p>
+            <img src="https://www.nintendo.co.il/wp-content/uploads/2021/05/ring-fit-adventure-switch-hero.jpg" alt="תמונת משחק של Ring Fit Adventure מציגה שחקן המשתמש ב-Ring-Con תוך כדי אימון" class="game-image" width="800" height="450">
+        </section>
+
+        <section class="links">
+            <h2>קישורים למשחק</h2>
+            <a href="https://www.nintendo.com/games/detail/ring-fit-adventure-switch/">אתר רשמי של המשחק</a>
+        </section>
+
+        <section>
+            <h2>מה לומדים כאן?</h2>
+            <ul>
+                <li><strong>פעילות גופנית:</strong> שיפור כושר גופני, סיבולת, וכוח באמצעות תרגילים מגוונים.</li>
+                <li><strong>מודעות גופנית:</strong> פיתוח הבנה טובה יותר של תנועות הגוף ושרירים שונים.</li>
+                <li><strong>התמדה וקביעת יעדים:</strong> למידה על חשיבות ההתמדה באימונים וקביעת יעדי כושר אישיים.</li>
+                <li><strong>תזונה נכונה:</strong> הכרת עקרונות בסיסיים של תזונה בריאה ומאוזנת.</li>
+                <li><strong>ניהול זמן:</strong> תכנון וניהול זמן אימונים כחלק משגרת היום.</li>
+                <li><strong>פתרון בעיות:</strong> התמודדות עם אתגרים במשחק המצריכים חשיבה יצירתית.</li>
+                <li><strong>קואורדינציה:</strong> שיפור התיאום בין העיניים לתנועות הגוף.</li>
+                <li><strong>מוטיבציה:</strong> פיתוח מוטיבציה פנימית לשמירה על אורח חיים בריא.</li>
+                <li><strong>אנטומיה בסיסית:</strong> למידה על שרירים ומערכות גוף שונות.</li>
+                <li><strong>מיומנויות חברתיות:</strong> עידוד משחק משותף ותמיכה הדדית באימונים.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>תוכנית לימודים</h2>
+            <p>שילוב Ring Fit Adventure בכיתה יכול להעשיר את הלמידה במגוון תחומים:</p>
+            <ol>
+                <li><strong>חינוך גופני:</strong> שילוב המשחק כחלק מתוכנית הכושר הכיתתית.</li>
+                <li><strong>מדעים:</strong> למידה על מערכות הגוף, שרירים, ותהליכים פיזיולוגיים.</li>
+                <li><strong>מתמטיקה:</strong> חישוב קלוריות, מעקב אחר התקדמות, וניתוח נתוני ביצועים.</li>
+                <li><strong>אנגלית:</strong> למידת מונחים הקשורים לכושר ובריאות באנגלית.</li>
+                <li><strong>אמנות:</strong> יצירת פוסטרים מוטיבציוניים או תכנון מסלולי אימון.</li>
+                <li><strong>טכנולוגיה:</strong> הבנת הטכנולוגיה מאחורי המשחק והחיישנים.</li>
+                <li><strong>כישורי חיים:</strong> דיון על חשיבות אורח חיים בריא ואיזון.</li>
+                <li><strong>פסיכולוגיה:</strong> חקירת ההשפעה של פעילות גופנית על מצב הרוח ובריאות נפשית.</li>
+                <li><strong>תזונה:</strong> למידה על תזונה נכונה ותפקידה בשיפור ביצועים גופניים.</li>
+            </ol>
+        </section>
+
+ <section>
+            <h2>סרטון הדגמה של המשחק</h2>
+            <div class="video-container">
+                <iframe width="656" height="369" src="https://www.youtube.com/embed/42fweUOwANo?list=PLDKzS4Vtdasnhc8xAPcFx4p0CBDyLEiPZ" title="Ring Fit Adventure Playthrough Part 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </section>
+
+
+        <section>
+            <h2>קישורים נוספים</h2>
+            <ul>
+                <li><a href="https://www.health.gov/sites/default/files/2019-09/Physical_Activity_Guidelines_2nd_edition.pdf">המלצות לפעילות גופנית</a></li>
+                <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8984830/">מחקר על השפעת המשחק על תלמידים בתקופת הקורונה</a></li>
+                <li><a href="https://www.heylistengames.org/post/teaching-physical-education-with-video-games">כיצד לשלב את המשחק בשיעורי חינוך גופני</a></li>
+            </ul>
+        </section>
+
+
+        <a href="https://neufeldim.wixsite.com/edugamingengine" class="home-button">חזרה לדף הבית</a>
+    </div>
+
+    <script>
+        document.querySelectorAll('a').forEach(link => {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+        });
+    </script>
+</body>
+</html>

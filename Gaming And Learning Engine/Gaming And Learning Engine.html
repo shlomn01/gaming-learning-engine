@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://th.bing.com/th/id/OIG3.8rmEMC9A_ysIRoa2H5Db?w=1024&h=1024&rs=1&pid=ImgDetMain" />
+    <title>גיימינג ולמידה</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 3em;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 800;
+            position: relative;
+            padding-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            border-radius: 2px;
+        }
+
+        @keyframes colorChange {
+            0% { color: #2c3e50; }
+            50% { color: #3498db; }
+            100% { color: #2c3e50; }
+        }
+
+        h1 span {
+            display: inline-block;
+        }
+
+        h1 span:first-child {
+            animation: colorChange 4s infinite;
+        }
+
+        h1 span:last-child {
+            animation: colorChange 4s infinite reverse;
+        }
+        .search-section {
+            margin-bottom: 30px;
+            background-color: #ecf0f1;
+            padding: 25px;
+            border-radius: 12px;
+        }
+        .search-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .search-row select, .search-row input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #bdc3c7;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        .search-row select:focus, .search-row input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        .search-row select {
+            appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+            background-repeat: no-repeat;
+            background-position: left 10px center;
+            padding-left: 30px;
+        }
+        button {
+            padding: 12px 25px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+            margin-top: 15px;
+        }
+        button:hover {
+            background-color: #27ae60;
+            animation: pulse 1s infinite;
+        }
+        .checkbox-row {
+            display: flex;
+            gap: 30px;
+            margin-top: 15px;
+        }
+        .checkbox-row label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            color: #34495e;
+        }
+        .checkbox-row input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+        }
+        #gameSearch {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #bdc3c7;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        #gameSearch:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        /* Unique styles for each select */
+        #competencySelect { background-color: #ff9ff3; color: #192a56; }
+        #knowledgeAreaSelect { background-color: #feca57; color: #341f97; }
+        #skillSelect { background-color: #54a0ff; color: #ffffff; }
+        #valueSelect { background-color: #5f27cd; color: #ffffff; }
+        #approachSelect { background-color: #ff6b6b; color: #ffffff; }
+        #platformSelect { background-color: #48dbfb; color: #341f97; }
+        #playersSelect { background-color: #10ac84; color: #ffffff; }
+
+        /* הוספת סגנון חדש עבור האפשרות הראשונה בכל רשימה נפתחת */
+        select option:first-child {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        /* שינוי צבע הטקסט של האפשרות הראשונה כדי להבטיח ניראות טובה */
+        #competencySelect option:first-child { color: #000; }
+        #knowledgeAreaSelect option:first-child { color: #000; }
+        #skillSelect option:first-child { color: #000; }
+        #valueSelect option:first-child { color: #000; }
+        #approachSelect option:first-child { color: #000; }
+        #platformSelect option:first-child { color: #000; }
+        #playersSelect option:first-child { color: #000; }
+
+        /* הוספת אנימציה לכפתור החיפוש */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* חזרה לעיצוב המקורי של תצוגת המשחקים */
+        .results-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .game-result {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .game-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        .game-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #2c3e50;
+        }
+        .game-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+        .category-tag {
+            background-color: #e74c3c;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        .game-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .game-link:hover {
+            background-color: #2980b9;
+        }
+        .game-details {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .game-details p {
+            margin: 5px 0;
+        }
+
+        .game-details strong {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        /* Media query for mobile devices */
+        @media (max-width: 768px) {
+            .search-row {
+                flex-direction: column;
+            }
+            .search-row select, .search-row input {
+                width: 100%;
+            }
+            .checkbox-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .container {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><span>גיימינג</span> <span>ולמידה</span></h1>
+        
+        <div class="search-section">
+            <div class="search-row">
+                <input type="text" id="gameSearch" placeholder="חפש משחק...">
+                <datalist id="gameOptions">
+                    <!-- Options will be populated dynamically -->
+                </datalist>
+            </div>
+            <div class="search-row">
+                <select id="competencySelect">
+                    <option value="">כשירות</option>
+                    <!-- Options will be populated dynamically -->
+                </select>
+            </div>
+            <div class="search-row">
+                <select id="knowledgeAreaSelect">
+                    <option value="">תחום ידע</option>
+                    <!-- Options will be populated dynamically -->
+                </select>
+                <select id="skillSelect">
+                    <option value="">מיומנות</option>
+                    <!-- Options will be populated dynamically -->
+                </select>
+                <select id="valueSelect">
+                    <option value="">ערך</option>
+                    <!-- Options will be populated dynamically -->
+                </select>
+                <select id="approachSelect">
+                    <option value="">גישה</option>
+                    <!-- Options will be populated dynamically -->
+                </select>
+            </div>
+            <div class="search-row">
+                <select id="platformSelect">
+                    <option value="">פלטפורמה</option>
+                    <option value="מחשב">מחשב</option>
+                    <option value="נינטנדו">נינטנדו</option>
+                    <option value="אקסבוקס">אקסבוקס</option>
+                    <option value="פלייסטיישן">פלייסטיישן</option>
+		      <option value="VR">VR</option>
+		      <option value="סמארטפון">סמארטפון</option>
+                </select>
+                <select id="playersSelect">
+                    <option value="">מספר שחקנים</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="4">4</option>
+				  <option value="6">6</option>
+				  <option value="10">10</option>
+                </select>
+            </div>
+            <div class="checkbox-row">
+                <label>
+                    <input type="checkbox" id="freeGameCheckbox"> משחק חינמי
+                </label>
+                <label>
+                    <input type="checkbox" id="multiplayerCheckbox"> מולטיפלייר
+                </label>
+            </div>
+            <button onclick="searchGames()">חיפוש</button>
+        </div>
+        
+        <div id="resultsSection" class="results-section">
+            <!-- Game results will be populated here -->
+        </div>
+    </div>
+
+
+    <script>
+        const games = [
+            {
+                name: "Minecraft",
+                image: "https://static.wixstatic.com/media/caf596_aadead747719462a8f2ea3c59f39f2f5~mv2.jpeg",
+                competencies: ["חשיבה מיחשובית", "יזמות וחדשנות"],
+		knowledgeAreas: ["אנגלית"],
+		skills: ["יצירתיות", "פתרון בעיות", "שיתוף פעולה"],
+                values: [],
+                approaches: ["סקרנות"],
+                platforms: ["מחשב", "נינטנדו", "אקסבוקס"],
+                players: [1, 2, 4],
+                free: false,
+                multiplayer: true,
+                link: "https://neufeldim.wixsite.com/edugamingengine/minecraft-education"
+            },
+            {
+                name: "Baba Is You",
+                image: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/736260/header.jpg?t=1698353847",
+                competencies: ["חשיבה מערכתית", "חשיבה מיחשובית"],
+		knowledgeAreas: ["אנגלית"],
+                skills: ["פתרון בעיות"],
+                values: [],
+                approaches: [],
+                platforms: ["מחשב", "נינטנדו"],
+                players: [1],
+                free: false,
+                multiplayer: false,
+                link: "https://neufeldim.wixsite.com/edugamingengine/babaisyou"
+            },
+            {
+                name: "Civilization",
+                image: "https://static.wixstatic.com/media/caf596_abcfd4921dcb4db7bc1b4c5d7fe57aa4~mv2.png",
+                competencies: ["חשיבה אסטרטגית", "יישוב מתחים ודילמות", "אוריינות פיננסית"],
+		knowledgeAreas: ["אנגלית", "היסטוריה"],
+                skills: ["קבלת החלטות", "ניהול משאבים"],
+                values: ["שוויון", "צדק"],
+                approaches: [],
+                platforms: ["מחשב"],
+                players: [1, 4],
+                free: false,
+                multiplayer: true,
+                link: "https://neufeldim.wixsite.com/edugamingengine/civilization"
+            },
+	{
+                name: "What Remains of Edith Finch",
+                image: "https://static.wixstatic.com/media/caf596_fc33dabfb7a640b4a7272606d552296b~mv2.jpeg",
+                competencies: [],
+		knowledgeAreas: ["אנגלית"],
+                skills: ["פתרון בעיות"],
+                values: ["זהות"],
+                approaches: ["חוסן", "תחושת שייכות"],
+                platforms: ["מחשב"],
+                players: [1],
+                free: false,
+                multiplayer: true,
+                link: "https://neufeldim.wixsite.com/edugamingengine/whatremainsofedithfinch"
+            },
+
+	 {
+                name: "Indiana Jones and the Fate of Atlantis",
+                	image: "https://static.wixstatic.com/media/caf596_548f1f58c59146e6ab1d6a01a4f376f4~mv2.png",
+                competencies: [],
+		knowledgeAreas: ["עברית", "היסטוריה"],
+                skills: ["יצירתיות", "פתרון בעיות" ],
+                values: ["סקרנות"],
+                approaches: [],
+                platforms: ["מחשב"],
+                players: [1],
+                free: true,
+                multiplayer: false,
+                link: "https://www.old-games.org/games/indyjones3"
+          },
+	{
+                name: "Beat Saber",
+                image: "https://static.wixstatic.com/media/caf596_6e1796af08e0477bbb4ed2dc1b75abe8~mv2.jpg",
+                competencies: [],
+		knowledgeAreas: ["חנ''ג"],
+                skills: ["מיומנות לאומנות, מוסיקה וחינוך גופני"],
+                values: ["סקרנות"],
+                approaches: ["מודעות עצמית"],
+                platforms: ["VR"],
+                players: [1],
+                free: false,
+                multiplayer: false,
+                link: "https://neufeldim.wixsite.com/edugamingengine/beatsaber"
+          },
+
+  	{
+                name: "Ring Fit Adventure",
+                image: "https://www.nintendo.co.il/wp-content/uploads/2021/05/ring-fit-adventure-switch-hero.jpg",
+                competencies: [],
+		knowledgeAreas: ["חנ''ג"],
+                skills: ["מיומנות לאומנות, מוסיקה וחינוך גופני"],
+                values: ["סקרנות"],
+                approaches: ["מודעות עצמית"],
+                platforms: ["נינטנדו"],
+                players: [1],
+                free: false,
+                multiplayer: false,
+                link: "https://neufeldim.wixsite.com/edugamingengine/ringfitadventure"
+          },
+
+{
+                name: "Kerbal Space Program",
+                image: "https://static.wixstatic.com/media/caf596_2d3f9d0fa0c64e4e8789cef21373db15~mv2.jpeg",
+                competencies: ["חשיבה מערכתית"],
+		knowledgeAreas: ["אנגלית", "מדעים"],
+                skills: ["חשיבה מיחשובית", "חשיבה רפלקטיבית"],
+                values: [],
+                approaches: ["סקרנות", "מוטיבציה"],
+                platforms: ["מחשב", "אקסבוקס"],
+                players: [1],
+                free: false,
+                multiplayer: true,
+                link: "https://neufeldim.wixsite.com/edugamingengine/kerbal-space-program"
+          },
+
+{
+                name: "Roller Coaster Tycoon",
+                image: "https://static.wixstatic.com/media/caf596_cd917ef9760042c9b977594712f8a0fe~mv2.png",
+                competencies: ["אוריינות פיננסית"],
+		knowledgeAreas: [],
+                skills: ["יצירתיות", "פתרון בעיות"],
+                values: [],
+                approaches: ["תחושת שייכות", "אחריות"],
+                platforms: ["מחשב", "נינטנדו", "אקסבוקס"],
+                players: [1],
+                free: false,
+                multiplayer: false,
+                link: "https://neufeldim.wixsite.com/edugamingengine/rollercoastertycoon3"
+          },
+
+	{
+                name: "Simcity",
+                image: "https://static.wixstatic.com/media/caf596_a3eb9b7340be4ab99f907539a84e8b74~mv2.jpeg",
+                competencies: ["אוריינות פיננסית", "יישוב מתחים ודילמות"],
+		knowledgeAreas: ["אנגלית", "מדעים"],
+                skills: ["יצירתיות"],
+                values: [],
+                approaches: [],
+                platforms: ["מחשב", "נינטנדו", "אקסבוקס"],
+                players: [1],
+                free: false,
+                multiplayer: false,
+                link: "https://neufeldim.wixsite.com/edugamingengine/simcity"
+          },
+	{
+                name: "It Takes Two",
+                image: "https://static.wixstatic.com/media/caf596_f5a1c1afa6c041718fa8172600c9f69f~mv2.png",
+                competencies: ["ישוב מתחים ודילמות", "לקיחת אחריות", "חשיבה מערכתית", "פעלנות"],
+		knowledgeAreas: ["אנגלית"],
+                skills: ["פתרון בעיות", "יצירתיות", "שיתוף פעולה"],
+                values: [],
+                approaches: ["אחריות" ,"תחושת שייכות"],
+                platforms: ["מחשב", , "פלייסטיישן", "אקבוקס", "נינטנדו"],
+                players: [2],
+                free: false,
+                multiplayer: false,
+                link: "https://neufeldim.wixsite.com/edugamingengine/ittakestwo"
+            },
+
+	{
+                name: "Overcooked 2",
+                image: "https://static.wixstatic.com/media/caf596_807f3988da994dcfaef789eb229ce224~mv2.jpg",
+                competencies: ["ישוב מתחים ודילמות", "לקיחת אחריות", "פעלנות"],
+		knowledgeAreas: ["אנגלית"],
+                skills: ["פתרון בעיות", "שיתוף פעולה"],
+                values: [],
+                approaches: ["אחריות"],
+                platforms: ["מחשב", "פלייסטיישן", "אקבוקס", "נינטנדו"],
+                players: [2,4],
+                free: false,
+                multiplayer: true,
+                link: "https://neufeldim.wixsite.com/edugamingengine/overcooked2"
+            },
+	{
+                name: "Lego Star Wars",
+                image: "https://static.wixstatic.com/media/caf596_6180bf326f894172aecfbaa91313e624~mv2.jpg",
+                competencies: ["לקיחת אחריות", "פעלנות"],
+		knowledgeAreas: ["מדעים" ,"אנגלית"],
+                skills: ["פתרון בעיות", "שיתוף פעולה"],
+                values: [],
+                approaches: ["אמפתיה"],
+                platforms: ["מחשב", "פלייסטיישן", "אקבוקס", "נינטנדו"],
+                players: [2,4],
+                free: false,
+                multiplayer: false,
+                link: "https://neufeldim.wixsite.com/edugamingengine/lego-star-wars"
+            },
+	{
+                name: "Portal 2",
+                image: "https://static.wixstatic.com/media/caf596_4acd27647a8a461f8e6c09c3c82afa41~mv2.jpg",
+                competencies: ["חשיבה מערכתית","יזמות וחדשנות", "חשיבה מיחשובית"],
+		knowledgeAreas: ["מדעים" ,"אנגלית"],
+                skills: ["שיתוף פעולה", "יצירתיות"],
+                values: [],
+                approaches: ["סקרנות"],
+                platforms: ["מחשב", "פלייסטיישן", "אקבוקס", "נינטנדו"],
+                players: [2],
+                free: false,
+                multiplayer: true,
+                link: "https://neufeldim.wixsite.com/edugamingengine/portal2"
+            },
+	{
+                name: "Football Manager",
+                image: "https://static.wixstatic.com/media/caf596_a496d8adaf87431bb19a1b178a823bf0~mv2.jpg",
+                competencies: ["חשיבה מערכתית", "אוריינות פיננסית", "יישוב מתחים ודילמות", "לקיחת אחריות", "חשיבת עתיד"],
+		knowledgeAreas: ["מדעי הנתונים" ,"אנגלית"],
+                skills: ["שימוש בטכנולוגיות מידע ותקשורת", "יצירתיות"],
+                values: ["זהות"],
+                approaches: [],
+                platforms: ["מחשב", "נינטנדו", "פלייסטיישן", "אקסבוקס"],
+                players: [1],
+                free: false,
+                multiplayer: true,
+                link: "https://neufeldim.wixsite.com/edugamingengine/football-manager"
+          },
+	{
+                name: "PC Building Simulator",
+                image: "https://static.wixstatic.com/media/caf596_5b48df015890493ba0ba71a0920baafd~mv2.jpg",
+                competencies: ["חשיבה מערכתית", "אוריינות פיננסית", "יישוב מתחים ודילמות", "לקיחת אחריות"],
+		knowledgeAreas: ["אלקטרוניקה" ,"אנגלית"],
+                skills: ["שימוש בטכנולוגיות מידע ותקשורת", "פתרון בעיות"],
+                values: [],
+                approaches: [],
+                platforms: ["מחשב", "נינטנדו", "פלייסטיישן", "אקסבוקס"],
+                players: [1],
+                free: false,
+                multiplayer: false,
+                link: "https://neufeldim.wixsite.com/edugamingengine/pcbuildingsimulator"
+          },
+	{
+                name: "Mini Metro",
+                image: "https://static.wixstatic.com/media/caf596_2046d49bfbae4f1b89923013352c7632~mv2.png",
+                competencies: ["חשיבה מערכתית", "חשיבה מיחשובית", "אוריינות פיננסית"],
+		knowledgeAreas: ["מתמטיקה"],
+                skills: ["זמישות", "פתרון בעיות"],
+                values: [],
+                approaches: ["חוסן"],
+                platforms: ["מחשב", "נינטנדו", "פלייסטיישן", "סמארטפון"],
+                players: [1],
+                free: false,
+                multiplayer: false,
+                link: "https://neufeldim.wixsite.com/edugamingengine/mini-metro"
+          },
+	{
+                name: "NBA2K",
+                image: "https://static.wixstatic.com/media/caf596_2d1db116cfcc47b898f613f7bd55659b~mv2.jpg",
+                competencies: ["חשיבה מערכתית", "לקיחת אחריות", "אוריינות פיננסית"],
+		knowledgeAreas: ["מדעי הנתונים", "אנגלית"],
+                skills: ["שיתוף פעולה", "חשיבה רפלקטיבית"],
+                values: ["זהות"],
+                approaches: ["חוסן", "תחושת שייכות", "מוטיבציה"],
+                platforms: ["מחשב", "נינטנדו", "פלייסטיישן"],
+                players: [1,2,4],
+                free: false,
+                multiplayer: true,
+                link: "https://neufeldim.wixsite.com/edugamingengine/nba2k"
+          },
+	{
+                name: "Fifa",
+                image: "https://static.wixstatic.com/media/caf596_676ac3a908fe4fe8aec99d24496c9522~mv2.jpg",
+                competencies: ["חשיבה מערכתית", "לקיחת אחריות", "אוריינות פיננסית"],
+		knowledgeAreas: ["מדעי הנתונים", "אנגלית"],
+                skills: ["שיתוף פעולה", "חשיבה רפלקטיבית"],
+                values: ["זהות"],
+                approaches: ["חוסן", "תחושת שייכות", "מוטיבציה"],
+                platforms: ["מחשב", "נינטנדו", "אקסבוקס", "פלייסטיישן"],
+                players: [1,2,4],
+                free: false,
+                multiplayer: true,
+                link: "https://neufeldim.wixsite.com/edugamingengine/fc25"
+          },
+	{
+                name: "F124",
+                image: "https://static.wixstatic.com/media/caf596_ddea9b271cb14cafa94384e807b54e18~mv2.jpg",
+                competencies: ["חשיבה מערכתית"],
+		knowledgeAreas: ["מדעי הנתונים", "אנגלית"],
+                skills: ["זמישות", "מיומנויות לאמנות, מוסיקה וחינוך גופני"],
+                values: ["זהות"],
+                approaches: ["חוסן", "מודעות עצמית"],
+                platforms: ["מחשב", "אקסבוקס", "VR", "פלייסטיישן"],
+                players: [1,2],
+                free: false,
+                multiplayer: true,
+                link: "https://neufeldim.wixsite.com/edugamingengine/f124"
+          },
+	{	name: "Microsoft Flight Simulator",
+                image: "https://static.wixstatic.com/media/caf596_39b58ec2660445698f2236c0541252a1~mv2.jpg",
+                competencies: ["חשיבה מערכתית", "אוריינות גלובלית"],
+		knowledgeAreas: ["גיאוגרפיה", "אנגלית"],
+                skills: ["זמישות"],
+                values: [],
+                approaches: [],
+                platforms: ["אקסבוקס", "VR", "מחשב"],
+                players: [1],
+                free: false,
+                multiplayer: false,
+                link: "https://neufeldim.wixsite.com/edugamingengine/microsoftflightsimulator"
+	},
+	{		  
+		name: "Skribble",
+                image: "https://static.wixstatic.com/media/caf596_b181f0c1f02f4f149c74227eb8ccc218~mv2.png",
+                competencies: ["חשיבה מערכתית", "אוריינות גלובלית"],
+		knowledgeAreas: ["עברית", "אנגלית"],
+                skills: ["יצירתיות", "שיתוף פעולה"],
+                values: [],
+                approaches: ["סקרנות"],
+                platforms: ["סמארטפון", "מחשב"],
+                players: [4,10],
+                free: true,
+                multiplayer: true,
+                link: "https://neufeldim.wixsite.com/edugamingengine/skribble"
+	},
+	{	
+		name: "Codenames",
+                image: "https://static.wixstatic.com/media/caf596_58c41ab299bb47eebe59404b07ea082c~mv2.png",
+                competencies: ["חשיבה מערכתית"],
+		knowledgeAreas: ["עברית", "אנגלית"],
+                skills: ["יצירתיות", "שיתוף פעולה","חשיבה ביקורתית"],
+                values: [],
+                approaches: ["אמון"],
+                platforms: ["סמארטפון", "מחשב"],
+                players: [2,4,6],
+                free: true,
+                multiplayer: true,
+                link: "https://neufeldim.wixsite.com/edugamingengine/codenames"
+	},
+	{	
+		name: "Conflict",
+                image: "https://static.wixstatic.com/media/caf596_fa92ed7df9c94fce89a204eec6ad24e1~mv2.jpg",
+                competencies: ["אוריינות פיננסית", "יישוב מתחים ודילמות","חשיבה מערכתית", "חשיבה אסטרטגית"],
+		knowledgeAreas: ["גיאוגרפיה", "היסטוריה", "אנגלית"],
+                skills: ["פתרון סכסוכים", "חשיבה רפלקטיבית","חשיבה ביקורתית"],
+                values: [],
+                approaches: ["תחושת שייכות" ,"אחריות"],
+                platforms: ["מחשב"],
+                players: [1],
+                free: true,
+                multiplayer: false,
+                link: "https://neufeldim.wixsite.com/edugamingengine/conflict"
+	},
+	{	
+		name: "Keep Taliking And Nobody Explodes",
+                image: "https://static.wixstatic.com/media/caf596_2b9a60ef0d1b4c9db7778eb1a1e1f476~mv2.jpg",
+                competencies: ["פעלנות", "יישוב מתחים ודילמות","חשיבה מיחשובית", "חשיבה מערכתית"],
+		knowledgeAreas: [ "עברית", "אנגלית"],
+                skills: ["שיתוף פעולה", "זמישות","פתרון בעיות"],
+                values: ["זהות"],
+                approaches: ["פרואקטיביות" ,"אחריות"],
+                platforms: ["מחשב"],
+                players: [2,4,6],
+                free: false,
+                multiplayer: false,
+                link: "https://neufeldim.wixsite.com/edugamingengine/keeptalkingandnobodyexplodes"
+	},
+            // Add more games here based on the CSV data
+        ];
+
+ function populateSelectOptions() {
+            const selects = {
+                competencySelect: new Set(),
+                knowledgeAreaSelect: new Set(),
+                skillSelect: new Set(),
+                valueSelect: new Set(),
+                approachSelect: new Set()
+            };
+
+            const gameOptions = document.getElementById('gameOptions');
+
+            games.forEach(game => {
+                gameOptions.innerHTML += `<option value="${game.name}">`;
+                
+                // פונקציה זו מאחדת את הלוגיקה עבור כל סוגי הבחירה
+                function addToSet(set, array) {
+                    array.forEach(item => set.add(item));
+                }
+
+                addToSet(selects.competencySelect, game.competencies);
+                addToSet(selects.knowledgeAreaSelect, game.knowledgeAreas);
+                addToSet(selects.skillSelect, game.skills);
+                addToSet(selects.valueSelect, game.values);
+                addToSet(selects.approachSelect, game.approaches);
+            });
+
+            // פונקציה זו מאחדת את הלוגיקה של מילוי אפשרויות הבחירה
+            function populateSelect(selectId, options) {
+                const select = document.getElementById(selectId);
+                options.forEach(option => {
+                    select.innerHTML += `<option value="${option}">${option}</option>`;
+                });
+            }
+
+            Object.entries(selects).forEach(([selectId, options]) => {
+                populateSelect(selectId, options);
+            });
+        }
+
+        function searchGames() {
+            const searchTerm = document.getElementById('gameSearch').value.toLowerCase();
+            const selectedOptions = {
+                competency: document.getElementById('competencySelect').value,
+                knowledgeArea: document.getElementById('knowledgeAreaSelect').value,
+                skill: document.getElementById('skillSelect').value,
+                value: document.getElementById('valueSelect').value,
+                approach: document.getElementById('approachSelect').value,
+                platform: document.getElementById('platformSelect').value,
+                players: document.getElementById('playersSelect').value
+            };
+            const isFreeGame = document.getElementById('freeGameCheckbox').checked;
+            const isMultiplayer = document.getElementById('multiplayerCheckbox').checked;
+
+            const filteredGames = games.filter(game => 
+                (searchTerm === '' || game.name.toLowerCase().includes(searchTerm)) &&
+                (selectedOptions.competency === '' || game.competencies.includes(selectedOptions.competency)) &&
+                (selectedOptions.knowledgeArea === '' || game.knowledgeAreas.includes(selectedOptions.knowledgeArea)) &&
+                (selectedOptions.skill === '' || game.skills.includes(selectedOptions.skill)) &&
+                (selectedOptions.value === '' || game.values.includes(selectedOptions.value)) &&
+                (selectedOptions.approach === '' || game.approaches.includes(selectedOptions.approach)) &&
+                (selectedOptions.platform === '' || game.platforms.includes(selectedOptions.platform)) &&
+                (selectedOptions.players === '' || game.players.includes(parseInt(selectedOptions.players))) &&
+                (!isFreeGame || game.free) &&
+                (!isMultiplayer || game.multiplayer)
+            );
+
+            displayResults(filteredGames);
+        }
+
+        function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+function displayResults(games) {
+    const resultsSection = document.getElementById('resultsSection');
+    resultsSection.innerHTML = '';
+
+    // ערבוב המערך של המשחקים
+    const shuffledGames = shuffleArray([...games]);
+
+    shuffledGames.forEach(game => {
+        const gameElement = document.createElement('div');
+        gameElement.className = 'game-result';
+        
+        // פונקציה זו מאחדת את הלוגיקה של יצירת תגיות קטגוריה
+        function createCategoryTags(categories) {
+            return categories.map(category => `<span class="category-tag">${category}</span>`).join('');
+        }
+
+        gameElement.innerHTML = `
+            <img src="${game.image}" alt="${game.name}" class="game-image">
+            <div class="game-title">${game.name}</div>
+            <div class="game-categories">
+                ${createCategoryTags(game.competencies)}
+                ${createCategoryTags(game.knowledgeAreas)}
+                ${createCategoryTags(game.skills)}
+                ${createCategoryTags(game.values)}
+                ${createCategoryTags(game.approaches)}
+            </div>
+            <div class="game-details">
+                <p><strong>מספר שחקנים:</strong> ${game.players.join(', ')}</p>
+                <p><strong>פלטפורמות:</strong> ${game.platforms.join(', ')}</p>
+            </div>
+            <a href="${game.link}" class="game-link" target="_blank">למשחק</a>
+        `;
+        resultsSection.appendChild(gameElement);
+    });
+}
+
+        // פונקציה מאוחדת לאתחול האפליקציה
+        function initializeApp() {
+            populateSelectOptions();
+            document.getElementById('gameSearch').addEventListener('input', searchGames);
+            searchGames(); // הצג את כל המשחקים בהתחלה
+        }
+
+        // קריאה לפונקציית האתחול
+        initializeApp();
+    </script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<html><head><base href="https://websim.creation.engine/f124-racing-sim/" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F1 24: סימולטור מירוצים מתקדם - גיימינג חינוכי</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Oswald:wght@500&display=swap');
+
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', sans-serif;
+        line-height: 1.6;
+        color: #333;
+        direction: rtl;
+        background: #f0f4f8;
+        overflow-x: hidden;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    header {
+        text-align: center;
+        padding: 60px 0;
+        background: linear-gradient(45deg, #FF1E00, #1E90FF);
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+    }
+    header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('f124-header-bg.jpg') no-repeat center center;
+        background-size: cover;
+        opacity: 0.3;
+        z-index: 0;
+    }
+    h1 {
+        margin: 0;
+        font-size: 3.5em;
+        font-family: 'Oswald', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        position: relative;
+        z-index: 1;
+    }
+    section {
+        margin-bottom: 30px;
+        padding: 25px;
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+    h2 {
+        color: #FF1E00;
+        font-family: 'Oswald', sans-serif;
+        border-bottom: 2px solid #1E90FF;
+        padding-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .game-image {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 20px auto;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    .links a {
+        display: inline-block;
+        margin: 10px;
+        padding: 12px 24px;
+        background: linear-gradient(45deg, #FF1E00, #1E90FF);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .links a:hover {
+        background: linear-gradient(45deg, #1E90FF, #FF1E00);
+        transform: translateY(-3px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        padding-top: 30px;
+        height: 0;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 15px;
+    }
+    .home-button {
+        display: block;
+        width: 200px;
+        margin: 40px auto;
+        padding: 15px;
+        background: linear-gradient(45deg, #FF1E00, #1E90FF);
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        overflow: hidden;
+    }
+    .home-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+    .home-button::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: rgba(255,255,255,0.2);
+        transform: rotate(45deg);
+        transition: all 0.3s ease;
+    }
+    .home-button:hover::after {
+        left: 100%;
+    }
+    ul, ol {
+        padding-right: 20px;
+    }
+    li {
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <h1>F1 24: להתחרות בטובים ביותר</h1>
+    </header>
+    <div class="container">
+        <section>
+            <h2>על המשחק</h2>
+            <p>F1 24 הוא סימולטור מירוצי פורמולה 1 מתקדם המביא את חוויית המירוצים הריאליסטית ביותר אל מסך המחשב. המשחק משלב פיזיקה מדויקת, גרפיקה מרהיבה ומערכות ניהול קבוצה מעמיקות, המאפשרות לשחקנים לחוות את כל ההיבטים של עולם ה-F1 המרתק. <br> האפשרות להקים בבית הספר עמדות עם הגה דוושות והילוכים, ולהתחרות אחד בשני, וכמובן עם השחקנים ברשת, עשויה לאפשר לשחקנים חוויה חברתית וספורטיבית, בה הם מביאים לידי ביטוי אלמנטים שונים של תכנון מסלול, דיוק, תגובה למתרחש בין השחקנים השונים  במרוץ, ועוד. זהו מרוץ מרתון הדורש אימונים והסתגלות למסלולים שונים ברחבי העולם בעלי מאפיינים שונים.</p>
+            <img src="https://static.wixstatic.com/media/caf596_4fdba90652cb4d649e459a555348912c~mv2.webp" alt="תמונת משחק של F1 24 המציגה מכונית פורמולה 1 במהלך מירוץ" class="game-image" width="800" height="450">
+        </section>
+
+        <section class="links">
+            <h2>קישורים למשחק</h2>
+            <a href="https://www.ea.com/games/f1/f1-24">EA</a>
+            <a href="https://store.steampowered.com/app/2108330/F1_24/">Steam</a>
+        </section>
+
+        <section>
+            <h2>מה לומדים כאן?</h2>
+            <ul>
+                <li><strong>פיזיקה מעשית:</strong> הבנת כוחות, תאוצה, חיכוך ואווירודינמיקה.</li>
+                <li><strong>אסטרטגיה ותכנון:</strong> ניהול מירוץ, בחירת צמיגים ותזמון עצירות בפיטס.</li>
+                <li><strong>ניהול משאבים:</strong> שליטה בצריכת דלק ובלאי צמיגים.</li>
+                <li><strong>טכנולוגיה מתקדמת:</strong> הכרת מערכות הנדסיות מורכבות במכוניות F1.</li>
+                <li><strong>קבלת החלטות מהירה:</strong> תגובה לשינויים בתנאי המסלול ומצבי מירוץ.</li>
+                <li><strong>עבודת צוות:</strong> תקשורת עם צוות הפיטס ומהנדסי המרוץ.</li>
+                <li><strong>גיאוגרפיה:</strong> היכרות עם מסלולים ומדינות ברחבי העולם.</li>
+                <li><strong>מטאורולוגיה:</strong> הבנת השפעת מזג האוויר על ביצועי המכונית.</li>
+                <li><strong>ניהול לחץ:</strong> שמירה על ריכוז וביצועים תחת לחץ תחרותי.</li>
+                <li><strong>אנגלית טכנית:</strong> למידת מונחים מקצועיים בתחום המירוצים.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>תוכנית לימודים</h2>
+            <p>שילוב F1 24 בכיתה יכול להעשיר את הלמידה במגוון תחומים:</p>
+            <ol>
+                <li><strong>פיזיקה:</strong> ניתוח כוחות ותנועה במהירויות גבוהות.</li>
+                <li><strong>מתמטיקה:</strong> חישובי מהירות, זמן ומרחק, וניתוח נתונים סטטיסטיים.</li>
+                <li><strong>הנדסה:</strong> הבנת עקרונות תכנון ובניית מכוניות מירוץ.</li>
+                <li><strong>כימיה:</strong> הכרת חומרים מתקדמים וטכנולוגיות דלק.</li>
+                <li><strong>גיאוגרפיה:</strong> למידה על מדינות ותרבויות דרך מסלולי המירוצים.</li>
+                <li><strong>כלכלה:</strong> הבנת ההיבטים הכלכליים של ניהול קבוצת F1.</li>
+                <li><strong>תקשורת:</strong> ניתוח אסטרטגיות תקשורת ושיווק בספורט מוטורי.</li>
+                <li><strong>נהיגה:</strong> הכנה ללימודי נהיגה.</li>
+                <li><strong>מוטוריקה ומהירות תגובה:</strong> עבודה על מהירות תגובה ואלמנטים מוטוריים.</li>
+                <li><strong> ספורט ותחרות:</strong> טורניר Esports בית ספרי / מחוזי / ארצי.</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>סרטון הדגמה של המשחק</h2>
+            <div class="video-container">
+                <iframe width="656" height="369" src="https://www.youtube.com/embed/LQkjLQM77Xw" title="Lando Norris Plays F1 24 For The First Time!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <section>
+            <h2>קישורים נוספים</h2>
+            <ul>
+                <li><a href="https://www.formula1.com/">האתר הרשמי של פורמולה 1</a></li>
+                <li><a href="https://f1esports.com/qualification">טורניר F1 של גיימרים</a></li>
+                <li><a href="https://www.netflix.com/watch/81672085?trackId=255824129&tctx=0%2C0%2Cc9337541-dcfe-444a-a59d-844c3d6dd2ca-363369788%2Cc9337541-dcfe-444a-a59d-844c3d6dd2ca-363369788%7C2%2Cunknown%2C%2C%2CtitlesResults%2C81672085%2CVideo%3A81672085%2CminiDpPlayButton">סרט על שחקן סימולטור  מרוצים שהפך לנהג מרוצים מקצועני</a></li>
+
+            </ul>
+        </section>
+
+        <a href="https://neufeldim.wixsite.com/edugamingengine" class="home-button">חזרה לדף הבית</a>
+    </div>
+
+    <script>
+        document.querySelectorAll('a').forEach(link => {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+        });
+    </script>
+</body>
+</html>
