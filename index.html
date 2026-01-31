@@ -203,7 +203,7 @@
 
         #gameSearch {
             width: 100%;
-            padding: 20px 60px 20px 25px;
+            padding: 20px 120px 20px 25px;
             font-size: 1.2rem;
             font-family: 'Heebo', sans-serif;
             background: rgba(0, 0, 0, 0.4);
@@ -221,6 +221,33 @@
         #gameSearch:focus {
             border-color: var(--neon-blue);
             box-shadow: 0 0 30px rgba(0, 243, 255, 0.3), inset 0 0 20px rgba(0, 243, 255, 0.1);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-family: 'Heebo', sans-serif;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .search-btn:hover {
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.5), 0 0 40px rgba(180, 0, 255, 0.3);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .search-btn:active {
+            transform: translateY(-50%) scale(0.97);
         }
 
         .search-icon {
@@ -675,6 +702,11 @@
             .game-content {
                 padding: 15px;
             }
+
+            .search-btn {
+                padding: 10px 18px;
+                font-size: 0.95rem;
+            }
         }
 
         /* Animation for cards appearing */
@@ -722,6 +754,7 @@
         <section class="search-section">
             <div class="search-input-container">
                 <input type="text" id="gameSearch" placeholder="חפש משחק..." autocomplete="off">
+                <button id="searchBtn" class="search-btn" onclick="filterGames()">חפש</button>
                 <span class="search-icon">🔍</span>
             </div>
 
@@ -769,7 +802,7 @@
                 <label class="checkbox-label">
                     <input type="checkbox" id="multiplayerCheckbox">
                     <span class="checkbox-custom"></span>
-                    🌐 מולטיפלייר
+                    🌐 משחק רב משתתפים
                 </label>
                 <button class="clear-filters" onclick="clearAllFilters()">🗑️ נקה סינונים</button>
             </div>
@@ -1138,6 +1171,79 @@
             'סמארטפון': '📱'
         };
 
+        // Hebrew aliases for game names (for Hebrew search support)
+        const gameAliases = {
+            "Minecraft": ["מיינקראפט", "מיינקרפט", "מינקראפט"],
+            "Baba Is You": ["באבא איז יו", "באבא"],
+            "Civilization VI": ["ציוויליזציה", "סיוויליזציה", "ציביליזציה"],
+            "What Remains of Edith Finch": ["אדית פינץ", "מה שנשאר מאדית פינץ"],
+            "Beat Saber": ["ביט סייבר", "ביטסייבר"],
+            "Ring Fit Adventure": ["רינג פיט", "רינג פיט אדוונצ'ר"],
+            "Kerbal Space Program": ["קרבל", "קרבל ספייס"],
+            "Roller Coaster Tycoon": ["רולר קואסטר", "רכבת הרים"],
+            "SimCity": ["סים סיטי", "סימסיטי"],
+            "It Takes Two": ["איט טייקס טו", "לוקח שניים"],
+            "Overcooked 2": ["אוברקוקד", "מבושל"],
+            "Lego Star Wars": ["לגו מלחמת הכוכבים", "לגו סטאר וורס"],
+            "Portal 2": ["פורטל", "פורטל 2"],
+            "Football Manager": ["פוטבול מנג'ר", "מנהל כדורגל"],
+            "PC Building Simulator": ["סימולטור הרכבת מחשב", "הרכבת מחשב"],
+            "Mini Metro": ["מיני מטרו"],
+            "NBA 2K": ["אן בי איי", "כדורסל"],
+            "FIFA 25": ["פיפא", "פיפא 25", "כדורגל"],
+            "F1 24": ["פורמולה 1", "פורמולה", "F1"],
+            "Microsoft Flight Simulator": ["סימולטור טיסה", "פלייט סימולטור", "מיקרוסופט"],
+            "Skribbl.io": ["סקריבל", "ציור"],
+            "Codenames": ["קודניימס", "שמות קוד"],
+            "Conflict": ["קונפליקט", "סכסוך"],
+            "Keep Talking and Nobody Explodes": ["תמשיכו לדבר", "תמשיך לדבר"]
+        };
+
+        // Fuzzy match: calculate similarity between two strings
+        function fuzzyScore(str, query) {
+            str = str.toLowerCase();
+            query = query.toLowerCase();
+            // Exact include
+            if (str.includes(query)) return 1.0;
+            if (query.includes(str)) return 0.9;
+
+            // Calculate Levenshtein-based similarity for short queries
+            if (query.length <= 2) return 0;
+
+            // Subsequence match
+            let qi = 0;
+            for (let si = 0; si < str.length && qi < query.length; si++) {
+                if (str[si] === query[qi]) qi++;
+            }
+            const subseqRatio = qi / query.length;
+            if (subseqRatio >= 0.8) return 0.6 * subseqRatio;
+
+            // Character overlap (for Hebrew typo tolerance)
+            const queryChars = new Set(query);
+            let matchCount = 0;
+            for (const ch of queryChars) {
+                if (str.includes(ch)) matchCount++;
+            }
+            const overlapRatio = matchCount / queryChars.size;
+            if (overlapRatio >= 0.7 && query.length >= 3) return 0.4 * overlapRatio;
+
+            return 0;
+        }
+
+        // Get best search score for a game
+        function getGameSearchScore(game, searchTerm) {
+            if (!searchTerm) return 1;
+            // Check main name
+            let bestScore = fuzzyScore(game.name, searchTerm);
+            // Check aliases
+            const aliases = gameAliases[game.name] || [];
+            for (const alias of aliases) {
+                const score = fuzzyScore(alias, searchTerm);
+                if (score > bestScore) bestScore = score;
+            }
+            return bestScore;
+        }
+
         // Populate filter options
         function populateFilters() {
             const selects = {
@@ -1166,7 +1272,7 @@
 
         // Filter games
         function filterGames() {
-            const searchTerm = document.getElementById('gameSearch').value.toLowerCase();
+            const searchTerm = document.getElementById('gameSearch').value.trim().toLowerCase();
             const filters = {
                 competency: document.getElementById('competencySelect').value,
                 knowledgeArea: document.getElementById('knowledgeAreaSelect').value,
@@ -1179,21 +1285,31 @@
             const isFreeOnly = document.getElementById('freeGameCheckbox').checked;
             const isMultiplayerOnly = document.getElementById('multiplayerCheckbox').checked;
 
-            const filtered = games.filter(game => {
-                if (searchTerm && !game.name.toLowerCase().includes(searchTerm)) return false;
-                if (filters.competency && !game.competencies.includes(filters.competency)) return false;
-                if (filters.knowledgeArea && !game.knowledgeAreas.includes(filters.knowledgeArea)) return false;
-                if (filters.skill && !game.skills.includes(filters.skill)) return false;
-                if (filters.value && !game.values.includes(filters.value)) return false;
-                if (filters.approach && !game.approaches.includes(filters.approach)) return false;
-                if (filters.platform && !game.platforms.includes(filters.platform)) return false;
-                if (filters.players && !game.players.includes(parseInt(filters.players))) return false;
-                if (isFreeOnly && !game.free) return false;
-                if (isMultiplayerOnly && !game.multiplayer) return false;
-                return true;
-            });
+            const FUZZY_THRESHOLD = 0.35;
 
-            displayGames(filtered);
+            const scoredGames = games.map(game => {
+                // Apply dropdown/checkbox filters first
+                if (filters.competency && !game.competencies.includes(filters.competency)) return null;
+                if (filters.knowledgeArea && !game.knowledgeAreas.includes(filters.knowledgeArea)) return null;
+                if (filters.skill && !game.skills.includes(filters.skill)) return null;
+                if (filters.value && !game.values.includes(filters.value)) return null;
+                if (filters.approach && !game.approaches.includes(filters.approach)) return null;
+                if (filters.platform && !game.platforms.includes(filters.platform)) return null;
+                if (filters.players && !game.players.includes(parseInt(filters.players))) return null;
+                if (isFreeOnly && !game.free) return null;
+                if (isMultiplayerOnly && !game.multiplayer) return null;
+
+                // Fuzzy text search
+                const score = getGameSearchScore(game, searchTerm);
+                if (searchTerm && score < FUZZY_THRESHOLD) return null;
+
+                return { game, score };
+            }).filter(Boolean);
+
+            // Sort by score (best matches first), then shuffle within same score tier
+            scoredGames.sort((a, b) => b.score - a.score);
+
+            displayGames(scoredGames.map(s => s.game), !!searchTerm);
         }
 
         // Shuffle array
@@ -1207,11 +1323,11 @@
         }
 
         // Display games
-        function displayGames(gamesToShow) {
+        function displayGames(gamesToShow, isSorted) {
             const grid = document.getElementById('gamesGrid');
             const counter = document.getElementById('resultsCount');
 
-            const shuffled = shuffleArray(gamesToShow);
+            const shuffled = isSorted ? gamesToShow : shuffleArray(gamesToShow);
             counter.textContent = shuffled.length;
 
             if (shuffled.length === 0) {
@@ -1244,7 +1360,7 @@
                             <div class="game-image-overlay"></div>
                             <div class="game-badges">
                                 ${game.free ? '<span class="badge badge-free">חינמי</span>' : ''}
-                                ${game.multiplayer ? '<span class="badge badge-multiplayer">מולטיפלייר</span>' : ''}
+                                ${game.multiplayer ? '<span class="badge badge-multiplayer">משחק רב משתתפים</span>' : ''}
                             </div>
                         </div>
                         <div class="game-content">
@@ -1307,6 +1423,9 @@
 
             // Add event listeners
             document.getElementById('gameSearch').addEventListener('input', filterGames);
+            document.getElementById('gameSearch').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') filterGames();
+            });
             document.querySelectorAll('.filter-select').forEach(select => {
                 select.addEventListener('change', filterGames);
             });
