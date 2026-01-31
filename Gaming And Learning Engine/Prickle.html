@@ -1,0 +1,223 @@
+<html><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prickle: פתרון בעיות דרך פאזלים - גיימינג חינוכי</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Varela+Round&display=swap');
+
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: 'Varela Round', sans-serif;
+        line-height: 1.6;
+        color: #333;
+        direction: rtl;
+        background: #fef3e2;
+        overflow-x: hidden;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    header {
+        text-align: center;
+        padding: 40px 0;
+        background: linear-gradient(45deg, #8d6e63, #d4a574);
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+    }
+    header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('prickle-header-bg.jpg') no-repeat center center;
+        background-size: cover;
+        opacity: 0.3;
+        z-index: 0;
+    }
+    h1 {
+        margin: 0;
+        font-size: 3em;
+        font-family: 'Fredoka One', cursive;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        position: relative;
+        z-index: 1;
+    }
+    section {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 4px 15px rgba(141, 110, 99, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(141, 110, 99, 0.2);
+    }
+    h2 {
+        color: #8d6e63;
+        font-family: 'Fredoka One', cursive;
+        border-bottom: 2px solid #d4a574;
+        padding-bottom: 10px;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    .game-image {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 20px auto;
+        border-radius: 20px;
+        box-shadow: 0 4px 15px rgba(141, 110, 99, 0.3);
+    }
+    .links a {
+        display: inline-block;
+        margin: 10px;
+        padding: 12px 24px;
+        background: linear-gradient(45deg, #8d6e63, #d4a574);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .links a:hover {
+        background: linear-gradient(45deg, #d4a574, #8d6e63);
+        transform: translateY(-3px);
+        box-shadow: 0 4px 10px rgba(141, 110, 99, 0.5);
+    }
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        padding-top: 30px;
+        height: 0;
+        overflow: hidden;
+        border-radius: 20px;
+        box-shadow: 0 4px 15px rgba(141, 110, 99, 0.3);
+    }
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+    }
+    .home-button {
+        display: block;
+        width: 200px;
+        margin: 40px auto;
+        padding: 15px;
+        background: linear-gradient(45deg, #8d6e63, #d4a574);
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        overflow: hidden;
+    }
+    .home-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(141, 110, 99, 0.4);
+    }
+    .home-button::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: rgba(255,255,255,0.2);
+        transform: rotate(45deg);
+        transition: all 0.3s ease;
+    }
+    .home-button:hover::after {
+        left: 100%;
+    }
+    ul, ol {
+        padding-right: 20px;
+    }
+    li {
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Prickle: פתרון בעיות דרך פאזלים</h1>
+    </header>
+    <div class="container">
+        <section>
+            <h2>על המשחק</h2>
+            <p>Prickle הוא משחק פאזלים מבוסס רשת בסגנון סוקובן, שבו אתם משחקים כ-DadHog ומנסים לאסוף את כל הקיפודונים הפזורים ברחבי השלב. הקיפודונים נדבקים אחד לשני ויוצרים צורה דמוית טטריס, ועליכם לנווט את הצורה הגדלה והולכת דרך מעברים צרים עד לבית. המשחק מציע למעלה מ-40 שלבים לאורך 4 עונות, כל אחד עם אתגרים ייחודיים.</p>
+            <img src="../Prickle.png" alt="תמונת משחק של Prickle המציגה קיפודים חמודים בשלב פאזל" class="game-image" width="800" height="450">
+        </section>
+
+        <section class="links">
+            <h2>קישורים למשחק</h2>
+            <a href="https://store.steampowered.com/app/2759760/Prickle/">Steam</a>
+            <a href="https://sunbirdstudio.itch.io/prickle">Itch.io</a>
+        </section>
+
+        <section>
+            <h2>מה לומדים כאן?</h2>
+            <ul>
+                <li><strong>פתרון בעיות:</strong> התמודדות עם פאזלים מורכבים הדורשים תכנון מראש וחשיבה לוגית.</li>
+                <li><strong>חשיבה מרחבית:</strong> הבנת צורות, מרחב וניווט בסביבה דו-ממדית.</li>
+                <li><strong>תכנון אסטרטגי:</strong> חשיבה על סדר הפעולות הנכון לפני ביצוען.</li>
+                <li><strong>גמישות מחשבתית:</strong> יכולת לשנות גישה כשהפתרון הראשוני לא עובד.</li>
+                <li><strong>סבלנות וחוסן:</strong> התמודדות עם כישלונות חוזרים עד למציאת הפתרון.</li>
+                <li><strong>חשיבה ביקורתית:</strong> ניתוח המצב ובחירת הדרך הטובה ביותר.</li>
+                <li><strong>זיכרון עבודה:</strong> זכירת מסלולים ואפשרויות שנוסו.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>תוכנית לימודים</h2>
+            <p>שילוב Prickle בכיתה יכול להעשיר את הלמידה במגוון תחומים:</p>
+            <ol>
+                <li><strong>מתמטיקה:</strong> עבודה עם צורות גיאומטריות, חשיבה מרחבית ולוגיקה.</li>
+                <li><strong>מדעי המחשב:</strong> הבנת אלגוריתמים, תכנון צעדים ופתרון בעיות בצורה שיטתית.</li>
+                <li><strong>כישורי חיים:</strong> פיתוח סבלנות, חוסן נפשי והתמדה.</li>
+                <li><strong>חינוך רגשי:</strong> התמודדות עם תסכול ופיתוח מוטיבציה פנימית.</li>
+                <li><strong>עבודה בקבוצות:</strong> פתרון פאזלים משותף תוך דיון על אסטרטגיות.</li>
+                <li><strong>לוגיקה:</strong> פיתוח חשיבה לוגית וסדרתית דרך פאזלים מדורגים בקושי.</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>תוכנית לימודים שפותחה בישראל</h2>
+            <p>פתרון בעיות בעזרת Prickle - פיתוח חשיבה יצירתית ופתרון בעיות מורכבות. תוכנית שפותחה בהמדרשה לאומנויות דרכא.</p>
+            <a href="https://www.canva.com/design/DAGoySTwchY/Uazk1AB93rDd35JyN4geTg/edit" target="_blank" rel="noopener noreferrer" style="display: inline-block; margin: 10px 0; padding: 12px 24px; background: linear-gradient(45deg, #8d6e63, #d4a574); color: #fff; text-decoration: none; border-radius: 25px; font-weight: bold; transition: all 0.3s ease;">לצפייה בתוכנית הלימודים</a>
+        </section>
+
+        <section>
+            <h2>קישורים נוספים</h2>
+            <ul>
+                <li><a href="https://thinkygames.com/games/prickle/">Prickle באתר Thinky Games</a></li>
+                <li><a href="https://steamcommunity.com/app/2759760">קהילת Steam של Prickle</a></li>
+            </ul>
+        </section>
+
+        <a href="https://neufeldim.wixsite.com/edugamingengine" class="home-button">חזרה לדף הבית</a>
+    </div>
+
+    <script>
+        document.querySelectorAll('a').forEach(link => {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+        });
+    </script>
+</body>
+</html>
